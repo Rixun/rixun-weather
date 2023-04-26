@@ -4,7 +4,10 @@ import { Link, Stack } from "expo-router";
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Link href="/settings">Go to Settings</Link>
+      <Stack.Screen options={{ title: "Overview", headerShown: false }} />
+      <Link style={styles.link} href="/Settings">
+        Go to Settings
+      </Link>
     </View>
   );
 }
@@ -12,8 +15,11 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#161616",
     alignItems: "center",
     justifyContent: "center",
+  },
+  link: {
+    color: "#fff",
   },
 });
