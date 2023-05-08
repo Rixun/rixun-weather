@@ -13,17 +13,14 @@ const APICallDaily = async (long, lat) => {
   //var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
   var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
   var resData = await res.json();
-  var tempArr = [];
 
   for (var i = 0; i < resData['daily']['time'].length; i++) {
     var dailyResult = {};
     dailyResult.date = resData['daily']['time'][i];
     dailyResult.tempMax = resData['daily']['temperature_2m_max'][i];
     dailyResult.tempMin = resData['daily']['temperature_2m_min'][i];
-    tempArr.push(dailyResult);
+    weeklyForecast.push(dailyResult);
   }
-
-  weeklyForecast.push(tempArr);
 }
   
 export function GetWeatherForecast(searchInput) {
