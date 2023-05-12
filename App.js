@@ -14,8 +14,7 @@ export default function App() {
 
     console.log('--------------------------')
     console.log(result);
-    console.log('--------------------------')
-    
+    console.log('--------------------------')    
   }
 
   return (
@@ -38,7 +37,8 @@ export default function App() {
       />
       <Button title='Get Weather' onPress={() => HandleSearchButton()}/>
       {weeklyForecast.map((data) => (
-        <Text>{data.date} - {data.tempMax} / {data.tempMin}</Text>
+        // <Text>{data.date} - {data.tempMax} / {data.tempMin}</Text>
+        <Page1 day={data.date} dailyMaxTemp={data.tempMax} dailyMinTemp={data.tempMin}/>
       ))}
     </View>
   );

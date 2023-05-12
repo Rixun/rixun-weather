@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 
-export default function Page1() {
+export default function Page1(day, dailyMaxTemp, dailyMinTemp) {
   return (
     <View style={styles.cardContainer}>
       <Text>Mon</Text>
@@ -8,7 +8,8 @@ export default function Page1() {
         style={styles.img}
         source={require('../../assets/sun-icon.png')}
       />
-      <Text>10/20</Text>
+      {/* <Text>10/20</Text> */}
+      <Text>{dailyMaxTemp} / {dailyMinTemp}</Text>
     </View>
   )
 }
