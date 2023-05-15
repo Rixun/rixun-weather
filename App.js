@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import Page1 from './src/pages/Page1';
@@ -8,13 +8,13 @@ export default function App() {
   const [userInput, setUserInput] = useState('');
   const [weeklyForecast, setWeeklyForecast] = useState([]);
 
-  const HandleSearchButton = () => {
-    var result = GetWeatherForecast(userInput);
-    setWeeklyForecast(result);
+  useEffect(() => {
+    HandleSearchButton();
+  }, []);
 
-    console.log('--------------------------')
-    console.log(result);
-    console.log('--------------------------')    
+  const HandleSearchButton = async () => {
+    var result = await GetWeatherForecast(userInput);
+    setWeeklyForecast(result); 
   }
 
   return (
@@ -22,24 +22,25 @@ export default function App() {
       <Text>{userInput}</Text>
       <StatusBar style="auto" />
       <View style={styles.cardSection}>
+        {/* <Page1 />
         <Page1 />
         <Page1 />
         <Page1 />
         <Page1 />
         <Page1 />
-        <Page1 />
-        <Page1 />
-      </View>      
-      <TextInput
+        <Page1 /> */}
+      </View>
+      <View style={styles.cardSection}>
+        {weeklyForecast.map((data) => (
+          <Page1 day={data.date} dailyMaxTemp={data.tempMax} dailyMinTemp={data.tempMin}/>
+        ))}
+      </View>
+      {/* <TextInput
         style={styles.textInput}
         onChangeText={setUserInput}
         value={userInput}
-      />
-      <Button title='Get Weather' onPress={() => HandleSearchButton()}/>
-      {weeklyForecast.map((data) => (
-        // <Text>{data.date} - {data.tempMax} / {data.tempMin}</Text>
-        <Page1 day={data.date} dailyMaxTemp={data.tempMax} dailyMinTemp={data.tempMin}/>
-      ))}
+      /> */}
+      {/* <Button title='Get Weather' onPress={() => HandleSearchButton()}/> */}
     </View>
   );
 }

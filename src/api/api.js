@@ -1,42 +1,42 @@
 import jsonData from './suburbs.json';
-var resTemp = '';
-var weeklyForecast = [];
-var searchBy = "suburb"; // make configurable later
+let searchBy = "suburb"; // make configurable later
+let weeklyForecast = [];
 
 const APICall = async (long, lat) => {
   var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`)
   var resData = await res.json();
-  resTemp = resData['current_weather'].temperature;
+  return resData['current_weather'].temperature;
 }
 
 const APICallDaily = async (long, lat) => {
-  //var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
-  var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
-  var resData = await res.json();
+  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.79&longitude=150.83&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  let resData = await res.json();
+  console.log(resData)
 
-  for (var i = 0; i < resData['daily']['time'].length; i++) {
-    var dailyResult = {};
+  for (let i = 0; i < resData['daily']['time'].length; i++) {
+    let dailyResult = {};
     dailyResult.date = resData['daily']['time'][i];
     dailyResult.tempMax = resData['daily']['temperature_2m_max'][i];
     dailyResult.tempMin = resData['daily']['temperature_2m_min'][i];
     weeklyForecast.push(dailyResult);
   }
+
+  return weeklyForecast;
 }
   
-export function GetWeatherForecast(searchInput) {
-  var searchForLatitude = '';
-  var searchForLongitude = '';
+export async function GetWeatherForecast(searchInput) {
+  let searchForLatitude = '';
+  let searchForLongitude = '';
 
-  for (var i = 0; i < jsonData.data.length; i++) {
+  for (let i = 0; i < jsonData.data.length; i++) {
     if (jsonData.data[i][searchBy] == searchInput) {
       //searchResults = jsonData.data[i];
       searchForLatitude = jsonData.data[i].lat;
       searchForLongitude = jsonData.data[i].long;
+      break;
     }
   }
-  
-  //APICall(searchForLongitude, searchForLatitude);
-  APICallDaily(searchForLongitude, searchForLatitude);
 
-  return weeklyForecast;
+  // return APICall(searchForLongitude, searchForLatitude);
+  return await APICallDaily(searchForLongitude, searchForLatitude);
 }

@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 
-export default function Page1(day, dailyMaxTemp, dailyMinTemp) {
+export default function Page1({ day, dailyMaxTemp, dailyMinTemp }) {
   return (
     <View style={styles.cardContainer}>
-      <Text>Mon</Text>
+      <Text>{day}</Text>
       <Image
         style={styles.img}
         source={require('../../assets/sun-icon.png')}
       />
-      {/* <Text>10/20</Text> */}
-      <Text>{dailyMaxTemp} / {dailyMinTemp}</Text>
+      <Text style={styles.temperatureReading}>{dailyMaxTemp}/{dailyMinTemp}</Text>
     </View>
   )
 }
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     padding: 10,
     height: 80,
-    width: 50,
+    width: 52,
     borderWidth: 1,
     margin: 2
     // borderRadius ,
@@ -29,5 +28,8 @@ const styles = StyleSheet.create({
   img: {
     width: 40,
     height: 40,
+  },
+  temperatureReading: {
+    fontSize: 12,
   }
 })
