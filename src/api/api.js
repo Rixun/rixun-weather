@@ -9,9 +9,11 @@ const APICall = async (long, lat) => {
 }
 
 const APICallDaily = async (long, lat) => {
-  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.79&longitude=150.83&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  //var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  
+  // Hardcoded suburb for testing
+  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.88&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
   let resData = await res.json();
-  console.log(resData)
 
   for (let i = 0; i < resData['daily']['time'].length; i++) {
     let dailyResult = {};
