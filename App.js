@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, View, Button, TextInput } from 'react-native';
 import DailyWeatherCards from './src/pages/DailyWeatherCards';
 import { GetWeatherForecast } from './src/api/api';
 
@@ -18,6 +18,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={setUserInput}
+        value={userInput}
+      />
+      <Button title='Get Weather Forecast' onPress={() => HandleSearchButton()}/>
       <View style={styles.cardSection}>
         {weeklyForecast.map((data) => (
           <DailyWeatherCards
@@ -28,12 +34,6 @@ export default function App() {
           />
         ))}
       </View>
-      {/* <TextInput
-        style={styles.textInput}
-        onChangeText={setUserInput}
-        value={userInput}
-      /> */}
-      {/* <Button title='Get Weather' onPress={() => HandleSearchButton()}/> */}
     </View>
   );
 }

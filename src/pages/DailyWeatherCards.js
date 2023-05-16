@@ -26,17 +26,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: '#000',
-    // padding: 10,
+    padding: 1.5,
     height: 80,
-    width: 52,
+    minWidth: 40,
     borderWidth: 0.5,
-    margin: 2
+    margin: 1
   },
   img: {
     width: 40,
     height: 40,
   },
   temperatureReading: {
-    fontSize: 12,
+    fontSize: 11,
   }
 })
