@@ -6,7 +6,19 @@ export default function Icon(props) {
   const { name, width, height, ...extraProps } = props;
   const Icon = Icons[name] || '';
 
-  return Icon ? <Icon width={width} height={height} {...extraProps} /> : <></>;
+  return Icon ? (
+    <View style={styles.container}>
+      <Icon width={width} height={height} {...extraProps} />
+    </View>
+  ) : (
+    <></>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
