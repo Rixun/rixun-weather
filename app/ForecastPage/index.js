@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Button, TextInput } from 'react-native';
-import DailyWeatherCards from './src/pages/DailyWeatherCards';
-import { GetWeatherForecast } from './src/api/api';
+import DailyWeatherCards from '../../components/DailyWeatherCards';
+import { GetWeatherForecast } from '../../api/api';
 
-export default function App() {
+export default function ForecastPage() {
   const [userInput, setUserInput] = useState('');
   const [weeklyForecast, setWeeklyForecast] = useState([]);
 
@@ -13,7 +13,8 @@ export default function App() {
 
   const HandleSearchButton = async () => {
     var result = await GetWeatherForecast(userInput);
-    setWeeklyForecast(result);
+    console.log(result)
+    //setWeeklyForecast(result);
   }
 
   return (

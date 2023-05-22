@@ -11,8 +11,13 @@ const WeeklyForecast = async (long, lat) => {
   let weeklyForecast = [];
   //var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
   // Hardcoded suburb for testing
-  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.88&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  //let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.88&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+
+  //new
+  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&timezone=Australia%2FSydney&current_weather=true&daily=weathercode&daily=temperature_2m_max,temperature_2m_min`);
   let resData = await res.json();
+
+  console.log(resData)
 
   for (let i = 0; i < resData['daily']['time'].length; i++) {
     let dailyResult = {};
@@ -38,6 +43,5 @@ export async function GetWeatherForecast(searchInput) {
     }
   }
 
-  // return await CurrentWeatherForecast(searchForLongitude, searchForLatitude);
   return await WeeklyForecast(searchForLongitude, searchForLatitude);
 }
