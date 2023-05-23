@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, TextInput } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Image, Text } from 'react-native';
 import DailyWeatherCards from '../../components/DailyWeatherCards';
 import { GetWeatherForecast } from '../../api/api';
 
 export default function ForecastPage() {
-  const [userInput, setUserInput] = useState('');
+  // const [userInput, setUserInput] = useState('');
+  const [currentWeather, setCurrentWeather] = useState({})
   const [weeklyForecast, setWeeklyForecast] = useState([]);
 
   useEffect(() => {
@@ -13,18 +14,27 @@ export default function ForecastPage() {
 
   const HandleSearchButton = async () => {
     var result = await GetWeatherForecast(userInput);
-    console.log(result)
-    //setWeeklyForecast(result);
+    setCurrentWeather(result.current);
+    setWeeklyForecast(result.weekly);
   }
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <View style={styles.currentWeatherSection}>
+        <Text style={styles.currentHeading}>Sydney</Text>        
+        <Image
+          style={styles.currentImg}
+          source={require('../../assets/sun-icon.png')}
+        />
+        <Text style={styles.currentData}>Temp: {currentWeather.temperature}</Text>
+        <Text style={styles.currentData}>Windspeed: {currentWeather.windSpeed}</Text>
+      </View>
+      {/* <TextInput
         style={styles.textInput}
         onChangeText={setUserInput}
         value={userInput}
       />
-      <Button title='Get Weather Forecast' onPress={() => HandleSearchButton()}/>
+      <Button title='Get Weather Forecast' onPress={() => HandleSearchButton()}/> */}
       <View style={styles.cardSection}>
         {weeklyForecast.map((data) => (
           <DailyWeatherCards
@@ -45,7 +55,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    // marginTop: 80,
+  },
+  currentWeatherSection: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10
+  },
+  currentHeading: {
+    fontSize: 20
+  },
+  currentImg: {
+    width: 120,
+    height: 120,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  currentData: {
+    fontSize: 15
   },
   textInput: {
     height: 40,
