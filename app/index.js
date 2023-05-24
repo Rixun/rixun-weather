@@ -8,6 +8,9 @@ export default function Home() {
       <Link style={styles.link} href="/Settings">
         Go to Settings
       </Link>
+      <Link style={styles.link} href="/ForecastPage">
+        Go to Forecast
+      </Link>
     </View>
   );
 }

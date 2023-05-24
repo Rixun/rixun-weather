@@ -1,28 +1,35 @@
 import jsonData from './suburbs.json';
 let SEARCH_BY = 'suburb'; // make configurable later
 
-const CurrentForecast = async (long, lat) => {
-  var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`);
-  var resData = await res.json();
-  return resData['current_weather'].temperature;
-};
-
 const WeeklyForecast = async (long, lat) => {
+  let returnResult = {};
+  let currentForecast = {};
   let weeklyForecast = [];
-  //var res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  //let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&timezone=Australia%2FSydney&current_weather=true&daily=weathercode&daily=temperature_2m_max,temperature_2m_min`);
+  
   // Hardcoded suburb for testing
-  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.88&longitude=151.21&&daily=temperature_2m_max,temperature_2m_min&timezone=Australia%2FSydney`);
+  let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&timezone=Australia%2FSydney&current_weather=true&daily=weathercode&daily=temperature_2m_max,temperature_2m_min`);
   let resData = await res.json();
 
+  // Current forecast
+  currentForecast.temperature = resData['current_weather'].temperature;
+  currentForecast.windSpeed = resData['current_weather'].windspeed;
+  currentForecast.weatherCode = resData['current_weather'].weathercode;
+
+  // The next 7 days forecast
   for (let i = 0; i < resData['daily']['time'].length; i++) {
     let dailyResult = {};
     dailyResult.date = resData['daily']['time'][i];
+    dailyResult.weatherCode = resData['daily']['weathercode'][i];
     dailyResult.tempMax = resData['daily']['temperature_2m_max'][i];
     dailyResult.tempMin = resData['daily']['temperature_2m_min'][i];
     weeklyForecast.push(dailyResult);
   }
 
-  return weeklyForecast;
+  returnResult.current = currentForecast;
+  returnResult.weekly = weeklyForecast;
+
+  return returnResult;
 };
 
 export async function GetWeatherForecast(searchInput) {
@@ -38,6 +45,5 @@ export async function GetWeatherForecast(searchInput) {
     }
   }
 
-  // return await CurrentWeatherForecast(searchForLongitude, searchForLatitude);
   return await WeeklyForecast(searchForLongitude, searchForLatitude);
 }

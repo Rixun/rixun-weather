@@ -14,7 +14,7 @@ export default function DailyWeatherCards({ day, dailyMaxTemp, dailyMinTemp }) {
       <Text>{formattedDay}</Text>
       <Image
         style={styles.img}
-        source={require('../../assets/sun-icon.png')}
+        source={require('../assets/sun-icon.png')}
       />
       <Text style={styles.temperatureReading}>{dailyMaxTemp} / {dailyMinTemp}</Text>
     </View>
