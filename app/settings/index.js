@@ -1,34 +1,37 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
-import { useState } from "react";
-import SettingSection from "./Section";
+import { StyleSheet, Text, View } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { useState } from 'react';
+import SettingSection from './Section';
+import { useSettingStore } from '../../store/store';
+import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
 
 export default function Settings({}) {
-  const defaultState = "Horizontal Cards";
-  const [hourlyType, setHourlyType] = useState(defaultState);
-  const [weeklyType, setWeeklyType] = useState(defaultState);
+  const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
+  const setHourlyViewType = useSettingStore((state) => state.setHourlyViewType);
+  const weeklyViewType = useSettingStore((state) => state.weeklyViewType);
+  const setWeeklyViewType = useSettingStore((state) => state.setWeeklyViewType);
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: "Settings" }} />
+      <Stack.Screen options={{ title: 'Settings' }} />
       <SettingSection
         title="Hourly Forecast"
         options={[
-          { image: "Image Here", name: "Horizontal Cards" },
-          { image: "Image Here", name: "Vertical List" },
-          { image: "Image Here", name: "None" },
+          { image: 'Image Here', name: HORIZONTAL_CARDS },
+          { image: 'Image Here', name: VERTICAL_LIST },
+          { image: 'Image Here', name: NONE },
         ]}
-        selectedOption={hourlyType}
-        setSelectedOption={setHourlyType}
+        selectedOption={hourlyViewType}
+        setSelectedOption={setHourlyViewType}
       />
       <SettingSection
         title="Weekly Forecast"
         options={[
-          { image: "Image Here", name: "Horizontal Cards" },
-          { image: "Image Here", name: "Vertical List" },
-          { image: "Image Here", name: "None" },
+          { image: 'Image Here', name: HORIZONTAL_CARDS },
+          { image: 'Image Here', name: VERTICAL_LIST },
+          { image: 'Image Here', name: NONE },
         ]}
-        selectedOption={weeklyType}
-        setSelectedOption={setWeeklyType}
+        selectedOption={weeklyViewType}
+        setSelectedOption={setWeeklyViewType}
       />
     </View>
   );
@@ -37,6 +40,6 @@ export default function Settings({}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#161616",
+    backgroundColor: '#161616',
   },
 });
