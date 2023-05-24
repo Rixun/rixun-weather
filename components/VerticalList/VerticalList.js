@@ -2,26 +2,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import VerticalListItem from './VerticalListItem/VerticalListItem';
 
-export default function VerticalList() {
-  const exampleData = [
-    { day: 'Today', rainChance: '10%', tempMin: 15, tempMax: 22 },
-    { day: 'Thursday', rainChance: '20%', tempMin: 15, tempMax: 22 },
-    { day: 'Friday', rainChance: '30%', tempMin: 15, tempMax: 22 },
-    { day: 'Saturday', rainChance: '40%', tempMin: 15, tempMax: 22 },
-    { day: 'Sunday', rainChance: '50%', tempMin: 15, tempMax: 22 },
-    { day: 'Monday', rainChance: '60%', tempMin: 15, tempMax: 22 },
-    { day: 'Tuesday', rainChance: '70%', tempMin: 15, tempMax: 22 },
-  ];
+export default function VerticalList(props) {
+  const { weeklyForecastData } = props;
   const [listItems, setListItems] = useState();
 
   useEffect(() => {
-    setListItems(exampleData);
+    setListItems(weeklyForecastData);
   }, []);
 
   return (
     <View style={styles.container}>
       {listItems?.map((listItem, index) => (
-        <VerticalListItem key={listItem.day + index} {...listItem} />
+        <VerticalListItem key={listItem.date + index} {...listItem} />
       ))}
     </View>
   );
