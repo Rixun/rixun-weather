@@ -1,21 +1,18 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, TextInput, Image, Text } from 'react-native';
-import DailyWeatherCards from '../../components/DailyWeatherCards';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import { GetWeatherForecast } from '../../api/api';
 
-export default function ForecastPage() {
-  const [userInput, setUserInput] = useState('');
+export default function Hero() {
+  // const [userInput, setUserInput] = useState('');
   const [currentWeather, setCurrentWeather] = useState({});
-  const [weeklyForecast, setWeeklyForecast] = useState([]);
 
   useEffect(() => {
     HandleSearchButton();
   }, []);
 
   const HandleSearchButton = async () => {
-    var result = await GetWeatherForecast(userInput);
+    var result = await GetWeatherForecast('');
     setCurrentWeather(result.current);
-    setWeeklyForecast(result.weekly);
   };
 
   return (
@@ -39,26 +36,14 @@ export default function ForecastPage() {
         value={userInput}
       />
       <Button title='Get Weather Forecast' onPress={() => HandleSearchButton()}/> */}
-      <View style={styles.cardSection}>
-        {weeklyForecast.map((data) => (
-          <DailyWeatherCards
-            key={data.date}
-            day={data.date}
-            dailyMaxTemp={data.tempMax}
-            dailyMinTemp={data.tempMin}
-          />
-        ))}
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 20
   },
   currentWeatherSection: {
     alignItems: 'center',
@@ -66,7 +51,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   currentHeading: {
-    fontSize: 20,
+    color: '#fff',
+    fontSize: 20
   },
   currentImg: {
     width: 120,
@@ -75,6 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   currentData: {
+    color: '#fff',
     fontSize: 15,
   },
   textInput: {
@@ -83,11 +70,5 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-  },
-  cardSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 5,
-    padding: 10,
-  },
+  }
 });
