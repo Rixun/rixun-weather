@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { Toggle } from 'rixun-ui';
+import Toggle from '../../../components/Toggle/Toggle';
 
 export default function SettingSection(props) {
   const { title, options, selectedOption, setSelectedOption } = props;
@@ -14,7 +14,7 @@ export default function SettingSection(props) {
             <Text style={styles.optionText}>{option.name}</Text>
             <Toggle
               active={selectedOption === option.name}
-              onClick={() => {
+              onToggle={() => {
                 setSelectedOption(option.name);
               }}
             />

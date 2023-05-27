@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Overview', headerShown: false }} />
-      <Link style={styles.link} href="/settings">
+      <Link style={styles.link} href="/Settings">
         Go to Settings
       </Link>
       <Link style={styles.link} href="/ForecastPage">
