@@ -4,8 +4,8 @@ import DailyWeatherCards from '../../components/DailyWeatherCards';
 import { GetWeatherForecast } from '../../api/api';
 
 export default function ForecastPage() {
-  // const [userInput, setUserInput] = useState('');
-  const [currentWeather, setCurrentWeather] = useState({})
+  const [userInput, setUserInput] = useState('');
+  const [currentWeather, setCurrentWeather] = useState({});
   const [weeklyForecast, setWeeklyForecast] = useState([]);
 
   useEffect(() => {
@@ -16,18 +16,22 @@ export default function ForecastPage() {
     var result = await GetWeatherForecast(userInput);
     setCurrentWeather(result.current);
     setWeeklyForecast(result.weekly);
-  }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.currentWeatherSection}>
-        <Text style={styles.currentHeading}>Sydney</Text>        
+        <Text style={styles.currentHeading}>Sydney</Text>
         <Image
           style={styles.currentImg}
           source={require('../../assets/sun-icon.png')}
         />
-        <Text style={styles.currentData}>Temp: {currentWeather.temperature}</Text>
-        <Text style={styles.currentData}>Windspeed: {currentWeather.windSpeed}</Text>
+        <Text style={styles.currentData}>
+          Temp: {currentWeather.temperature}
+        </Text>
+        <Text style={styles.currentData}>
+          Windspeed: {currentWeather.windSpeed}
+        </Text>
       </View>
       {/* <TextInput
         style={styles.textInput}
@@ -59,19 +63,19 @@ const styles = StyleSheet.create({
   currentWeatherSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 10,
   },
   currentHeading: {
-    fontSize: 20
+    fontSize: 20,
   },
   currentImg: {
     width: 120,
     height: 120,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   currentData: {
-    fontSize: 15
+    fontSize: 15,
   },
   textInput: {
     height: 40,
@@ -84,6 +88,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: 5,
-    padding: 10
-  }
+    padding: 10,
+  },
 });
