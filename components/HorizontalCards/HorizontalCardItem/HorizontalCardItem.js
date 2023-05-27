@@ -5,16 +5,16 @@ const GetStringDay = (currentDate) => {
   return days[currentDate];
 }
 
-export default function DailyWeatherCards({ day, dailyMaxTemp, dailyMinTemp }) {
+export default function HorizontalCardItem({ day, dailyMaxTemp, dailyMinTemp }) {
   let currentDate = new Date(day);
   let formattedDay = GetStringDay(currentDate.getDay());
 
   return (
     <View style={styles.cardContainer}>
-      <Text>{formattedDay}</Text>
+      <Text style={styles.formattedDay}>{formattedDay}</Text>
       <Image
         style={styles.img}
-        source={require('../assets/sun-icon.png')}
+        source={require('../../../assets/sun-icon.png')}
       />
       <Text style={styles.temperatureReading}>{dailyMaxTemp} / {dailyMinTemp}</Text>
     </View>
@@ -25,18 +25,22 @@ const styles = StyleSheet.create({
   cardContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#000',
-    padding: 1.5,
+    borderColor: '#e2e2e2',
     height: 80,
     minWidth: 40,
     borderWidth: 0.5,
-    margin: 1
+    margin: 1,
+    padding: 1.5
+  },
+  formattedDay: {
+    color: '#fff',
   },
   img: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
   },
   temperatureReading: {
-    fontSize: 11,
+    color: '#fff',
+    fontSize: 11
   }
 })

@@ -3,6 +3,7 @@ import { Link, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { GetWeatherForecast } from '../api/api';
 import { useWeatherStore } from '../store/store';
+import Hero from '../components/Hero/Hero';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 
 export default function Home() {
@@ -25,9 +26,7 @@ export default function Home() {
       <Link style={styles.link} href="/settings">
         Go to Settings
       </Link>
-      <Link style={styles.link} href="/ForecastPage">
-        Go to Forecast
-      </Link>
+      <Hero />
       <WeeklyWeather />
     </View>
   );
