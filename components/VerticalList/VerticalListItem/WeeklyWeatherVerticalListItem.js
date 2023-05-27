@@ -1,19 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import Icon from '../../Icon/Icon';
-import { getDay } from '../../../utility/dateHelper';
+import { getWeekDay } from '../../../utility/dateHelper';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
-export default function VerticalListItem(props) {
+export default function WeeklyWeatherVerticalListItem(props) {
   const { date, weatherCode, rainChance = '0%', tempMin, tempMax } = props;
   const [year, month, day] = date.split('-');
-  const weatherDate = new Date(year, month - 1, day);
-  const weekdayNo = weatherDate.getDay();
-  const weekday = getDay(weekdayNo);
+  const weekday = getWeekDay(new Date(year, month - 1, day).getDay());
   const weatherIcon = getWeatherIcon(weatherCode);
-  useEffect(() => {
-    console.log(weekday, weatherCode);
-  }, []);
   return (
     <View style={styles.container}>
       <View style={[styles.container, styles.subContainer]}>

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { useSettingStore, useWeatherStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
-import VerticalList from '../VerticalList/VerticalList';
+import VerticalWeatherList from '../VerticalList/VerticalWeatherList';
 
 export default function WeeklyWeather() {
   const weeklyViewType = useSettingStore((state) => state.weeklyViewType);
@@ -16,7 +16,7 @@ export default function WeeklyWeather() {
         </View>
       );
     case VERTICAL_LIST:
-      return <VerticalList weeklyForecastData={weeklyForecastData} />;
+      return <VerticalWeatherList listData={weeklyForecastData} />;
     case NONE:
     default:
       return null;
