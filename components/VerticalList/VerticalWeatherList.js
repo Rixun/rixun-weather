@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import React from 'react';
 import WeeklyWeatherVerticalListItem from './VerticalListItem/WeeklyWeatherVerticalListItem';
 
 export default function VerticalWeatherList(props) {
@@ -12,7 +12,10 @@ export default function VerticalWeatherList(props) {
   return (
     <View style={styles.container}>
       {listData?.map((listItem, index) => (
-        <WeeklyWeatherVerticalListItem key={listItem.date + index} {...listItem} />
+        <WeeklyWeatherVerticalListItem
+          key={listItem.date + index}
+          {...listItem}
+        />
       ))}
     </View>
   );
@@ -21,11 +24,11 @@ export default function VerticalWeatherList(props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    maxWidth: '800px',
-    gap: '8px',
-    paddingVertical: '16px',
-    paddingHorizontal: '8px',
+    maxWidth: 800,
+    gap: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     backgroundColor: '#262626',
-    borderRadius: '4px',
+    borderRadius: 4,
   },
 });

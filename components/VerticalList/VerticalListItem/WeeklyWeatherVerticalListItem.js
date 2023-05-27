@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Icon from '../../Icon/Icon';
 import { getWeekDay } from '../../../utility/dateHelper';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   subContainer: {
     flexBasis: 0,
     flexGrow: 1,
-    paddingHorizontal: '8px',
+    paddingHorizontal: 8,
   },
   text: {
     color: '#FFF',
     paddingHorizontal: 1,
   },
   icon: {
-    paddingHorizontal: '2px',
+    paddingHorizontal: 2,
   },
 });
