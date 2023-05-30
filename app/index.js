@@ -10,6 +10,7 @@ export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
   // const forecast = useWeatherStore((state) => state.forecast);
   // const current = useWeatherStore((state) => state.current);
+  // const dailyHourly = useWeatherStore((state) => state.dailyHourly);
   // const weekly = useWeatherStore((state) => state.weekly);
 
   useEffect(() => {
