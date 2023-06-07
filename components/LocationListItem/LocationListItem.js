@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   subContainer: {
-    flex: 1,
+    display: 'flex',
     flexDirection: 'row',
   },
 });
