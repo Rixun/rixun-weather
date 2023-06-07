@@ -12,7 +12,15 @@ export default function Settings({}) {
   const setWeeklyViewType = useSettingStore((state) => state.setWeeklyViewType);
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: 'Settings' }} />
+      <Stack.Screen
+        options={{
+          title: 'Settings',
+          headerStyle: {
+            backgroundColor: '#161616',
+          },
+          headerTintColor: '#fff',
+        }}
+      />
       <SettingSection
         title="Hourly Forecast"
         options={[

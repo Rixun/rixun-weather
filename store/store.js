@@ -28,7 +28,7 @@ export const useLocationStore = create((set) => ({
   locations: [],
   defaultLocation: {},
   addNewLocation: (locationData) =>
-    set(({ state }) => ({ locations: [...state.locations, locationData] })),
+    set((state) => ({ locations: [...state.locations, locationData] })),
   removeLocation: (locationId) =>
     set((state) => ({
       locations: state.locations.filter(
@@ -36,4 +36,16 @@ export const useLocationStore = create((set) => ({
       ),
     })),
   setDefaultLocation: (locationData) => set(() => locationData),
+}));
+
+export const useSearchStore = create((set) => ({
+  searchList: [],
+  setSearchList: (searchListData) =>
+    set(() => ({ searchList: searchListData })),
+  // removeLocation: (locationId) =>
+  //   set((state) => ({
+  //     locations: state.locations.filter(
+  //       (location) => location.id !== locationId
+  //     ),
+  //   })),
 }));
