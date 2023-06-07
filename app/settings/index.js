@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
-import { useState } from 'react';
-import SettingSection from './Section';
+import { StyleSheet, View } from 'react-native';
+import { Stack } from 'expo-router';
+import SettingSection from './Section/Section';
 import { useSettingStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
 

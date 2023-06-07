@@ -17,6 +17,7 @@ export default function RootLayout() {
           },
         }}
         initialRouteName="index"
+        backBehavior="history"
       >
         <Drawer.Screen
           name="index"
@@ -48,6 +49,12 @@ export default function RootLayout() {
         />
         <Drawer.Screen
           name="Settings/Section/index"
+          options={{
+            drawerItemStyle: { display: 'none' },
+          }}
+        />
+        <Drawer.Screen
+          name="Search/SearchBar/SearchBar"
           options={{
             drawerItemStyle: { display: 'none' },
           }}
