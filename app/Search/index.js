@@ -23,7 +23,7 @@ export default function Search() {
     addNewLocation({
       name: listItem.name,
       latitude: listItem.latitude,
-      longitde: listItem.longitude,
+      longitude: listItem.longitude,
       admin1: listItem.admin1,
       country: listItem.country,
     });

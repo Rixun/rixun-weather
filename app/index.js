@@ -11,15 +11,13 @@ import { Drawer } from '../utility/Drawer';
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
   const defaultLocation = useLocationStore((state) => state.defaultLocation);
-  // const forecast = useWeatherStore((state) => state.forecast);
-  // const current = useWeatherStore((state) => state.current);
-  // const dailyHourly = useWeatherStore((state) => state.dailyHourly);
-  // const weekly = useWeatherStore((state) => state.weekly);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await getWeatherForecast(defaultLocation);
-      setAllForecast(result);
+      if (!result.error) {
+        setAllForecast(result);
+      }
     };
     fetchData();
   }, [defaultLocation]);

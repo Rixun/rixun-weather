@@ -16,9 +16,10 @@ export default function SearchBar({ searchText, setSearchText }) {
 
   const search = () => {
     idleTimer = setTimeout(async () => {
-      const searchList = await getSuburbs(searchText);
-      console.log(searchList);
-      setSearchList(searchList);
+      const searchListResults = await getSuburbs(searchText);
+      if (!searchListResults.error) {
+        setSearchList(searchListResults);
+      }
     }, 1000);
   };
 

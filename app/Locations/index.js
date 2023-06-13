@@ -3,8 +3,10 @@ import React from 'react';
 import { useLocationStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
 import { Drawer } from '../../utility/Drawer';
+import { useRouter } from 'expo-router';
 
 export default function Locations() {
+  const router = useRouter();
   const locations = useLocationStore((state) => state.locations);
   const setDefaultLocation = useLocationStore(
     (state) => state.setDefaultLocation
@@ -12,8 +14,7 @@ export default function Locations() {
 
   const onLocationPress = (locationData) => {
     setDefaultLocation(locationData);
-    // set this as current location
-    // refresh API for new data? not sure if i should be doing it here or not
+    router.push('/');
   };
 
   return (
