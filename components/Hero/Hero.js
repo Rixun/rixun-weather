@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
+import Icon from '../Icon/Icon';
 import { GetWeatherForecast } from '../../api/api';
+import { getWeatherIcon } from '../../utility/weatherCodeHelper';
 
 export default function Hero() {
   // const [userInput, setUserInput] = useState('');
   const [currentWeather, setCurrentWeather] = useState({});
+  const [currentWeatherCode, setCurrentWeatherCode] = useState(0);
+  const weatherIcon = getWeatherIcon(currentWeatherCode);
 
   useEffect(() => {
     HandleSearchButton();
@@ -13,21 +17,28 @@ export default function Hero() {
   const HandleSearchButton = async () => {
     var result = await GetWeatherForecast('');
     setCurrentWeather(result.current);
+    setCurrentWeatherCode(result.current.weatherCode);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.currentWeatherSection}>
         <Text style={styles.currentHeading}>Sydney</Text>
-        <Image
-          style={styles.currentImg}
-          source={require('../../assets/sun-icon.png')}
-        />
+        <Icon name={weatherIcon} height={150} width={150} />
         <Text style={styles.currentData}>
-          Temp: {currentWeather.temperature}
+          Temperature: {currentWeather.temperature}
+        </Text>
+        <Text style={styles.currentData}>
+          Humidity: {currentWeather.humidity}
         </Text>
         <Text style={styles.currentData}>
           Windspeed: {currentWeather.windSpeed}
+        </Text>
+        <Text style={styles.currentData}>
+          UV: {currentWeather.uv}
+        </Text>
+        <Text style={styles.currentData}>
+          UV - Clear Sky: {currentWeather.uvClearSky}
         </Text>
       </View>
       {/* <TextInput
@@ -53,12 +64,6 @@ const styles = StyleSheet.create({
   currentHeading: {
     color: '#fff',
     fontSize: 20
-  },
-  currentImg: {
-    width: 120,
-    height: 120,
-    marginTop: 10,
-    marginBottom: 10,
   },
   currentData: {
     color: '#fff',

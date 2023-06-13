@@ -3,6 +3,7 @@ import CloudLightRain from './Icons/CloudLightRain';
 import CloudRain from './Icons/CloudRain';
 import CloudRainThunder from './Icons/CloudRainThunder';
 import CloudSnow from './Icons/CloudSnow';
+import Fog from './Icons/Fog';
 import Moon from './Icons/Moon';
 import MoonCloud from './Icons/MoonCloud';
 import MoonCloudLightRain from './Icons/MoonCloudLightRain';
@@ -24,6 +25,7 @@ export default {
   CloudRain,
   CloudRainThunder,
   CloudSnow,
+  Fog,
   Moon,
   MoonCloud,
   MoonCloudLightRain,
