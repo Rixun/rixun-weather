@@ -1,8 +1,8 @@
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
-import { GetWeatherForecast } from '../api/api';
-import { useWeatherStore } from '../store/store';
+import { getWeatherForecast } from '../api/api';
+import { useLocationStore, useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 import Icon from '../components/Icon/Icon';
@@ -10,20 +10,21 @@ import { Drawer } from '../utility/Drawer';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
+  const defaultLocation = useLocationStore((state) => state.defaultLocation);
   // const forecast = useWeatherStore((state) => state.forecast);
   // const current = useWeatherStore((state) => state.current);
   // const weekly = useWeatherStore((state) => state.weekly);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await GetWeatherForecast();
+      const result = await getWeatherForecast(defaultLocation);
       setAllForecast(result);
     };
     fetchData();
-  }, []);
+  }, [defaultLocation]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Drawer.Screen
         options={{
           title: 'Home',
@@ -41,7 +42,7 @@ export default function Home() {
       {/* <Icon name="Back" width={100} height={100} /> */}
       <Hero />
       <WeeklyWeather />
-    </View>
+    </ScrollView>
   );
 }
 

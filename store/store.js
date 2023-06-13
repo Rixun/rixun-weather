@@ -35,7 +35,8 @@ export const useLocationStore = create((set) => ({
         (location) => location.id !== locationId
       ),
     })),
-  setDefaultLocation: (locationData) => set(() => locationData),
+  setDefaultLocation: (locationData) =>
+    set(() => ({ defaultLocation: locationData })),
 }));
 
 export const useSearchStore = create((set) => ({
