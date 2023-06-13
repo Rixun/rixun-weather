@@ -1,3 +1,4 @@
+import Back from './Icons/Back';
 import CloudLightRain from './Icons/CloudLightRain';
 import CloudRain from './Icons/CloudRain';
 import CloudRainThunder from './Icons/CloudRainThunder';
@@ -9,6 +10,7 @@ import MoonCloudRain from './Icons/MoonCloudRain';
 import MoonCloudSnow from './Icons/MoonCloudSnow';
 import RaindropEmpty from './Icons/RaindropEmpty';
 import RaindropFull from './Icons/RaindropFull';
+import Search from './Icons/Search';
 import Sun from './Icons/Sun';
 import SunCloud from './Icons/SunCloud';
 import SunCloudLightRain from './Icons/SunCloudLightRain';
@@ -17,6 +19,7 @@ import SunCloudSnow from './Icons/SunCloudSnow';
 import Wind from './Icons/Wind';
 
 export default {
+  Back,
   CloudLightRain,
   CloudRain,
   CloudRainThunder,
@@ -28,6 +31,7 @@ export default {
   MoonCloudSnow,
   RaindropEmpty,
   RaindropFull,
+  Search,
   Sun,
   SunCloud,
   SunCloudLightRain,

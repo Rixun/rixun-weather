@@ -1,11 +1,12 @@
 import { View, StyleSheet, Button } from 'react-native';
-import { Link, Stack } from 'expo-router';
+import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { GetWeatherForecast } from '../api/api';
 import { useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 import Icon from '../components/Icon/Icon';
+import { Drawer } from '../utility/Drawer';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
@@ -23,24 +24,21 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen
+      <Drawer.Screen
         options={{
           title: 'Home',
           headerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: '#121212',
           },
           headerTintColor: '#fff',
           headerRight: () => (
             <Link style={[styles.link, styles.headerLink]} href="/Search">
-              Search
+              <Icon name="Search" size={26} />
             </Link>
           ),
         }}
       />
-      <Link style={styles.link} href="/Settings">
-        Go to Settings
-      </Link>
-      <Icon name="Fog" width={100} height={100} />
+      {/* <Icon name="Back" width={100} height={100} /> */}
       <Hero />
       <WeeklyWeather />
     </View>

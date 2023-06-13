@@ -1,10 +1,11 @@
 import { StyleSheet, View } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { useLocationStore, useSearchStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
 import SearchBar from './SearchBar/SearchBar';
 import BackButton from '../../components/BackButton/BackButton';
+import { Drawer } from '../../utility/Drawer';
 
 export default function Search() {
   const router = useRouter();
@@ -31,11 +32,11 @@ export default function Search() {
   };
   return (
     <View style={styles.container}>
-      <Stack.Screen
+      <Drawer.Screen
         options={{
           title: 'Search',
           headerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: '#121212',
           },
           headerTintColor: '#fff',
           headerTitleContainerStyle: { flex: 1, width: '100%' },

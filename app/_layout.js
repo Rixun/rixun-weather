@@ -7,10 +7,10 @@ export default function RootLayout() {
       <Drawer
         screenOptions={{
           drawerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: '#121212',
           },
           drawerActiveTintColor: '#fff',
-          drawerInactiveTintColor: '#555',
+          drawerInactiveTintColor: '#656565',
           swipeEdgeWidth: 48,
           drawerContentStyle: {
             padding: 16,
@@ -48,7 +48,7 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-          name="Settings/Section/index"
+          name="Settings/Section/Section"
           options={{
             drawerItemStyle: { display: 'none' },
           }}

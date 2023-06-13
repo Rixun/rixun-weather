@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { Stack } from 'expo-router';
 import React from 'react';
 import { useLocationStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
+import { Drawer } from '../../utility/Drawer';
 
 export default function Locations() {
   const locations = useLocationStore((state) => state.locations);
   return (
     <View style={styles.container}>
-      <Stack.Screen
+      <Drawer.Screen
         options={{
           title: 'Locations',
           headerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: '#121212',
           },
           headerTintColor: '#fff',
         }}

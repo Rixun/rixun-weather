@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
+import Icon from '../Icon/Icon';
 
 export default function BackButton() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function BackButton() {
         router.back();
       }}
     >
-      <Text style={styles.largeText}>&lt;</Text>
+      <Icon name="Back" size={28} />
     </Pressable>
   );
 }

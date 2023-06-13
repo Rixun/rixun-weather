@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { Stack } from 'expo-router';
 import SettingSection from './Section/Section';
 import { useSettingStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
+import { Drawer } from '../../utility/Drawer';
 
 export default function Settings({}) {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
@@ -11,11 +11,11 @@ export default function Settings({}) {
   const setWeeklyViewType = useSettingStore((state) => state.setWeeklyViewType);
   return (
     <View style={styles.container}>
-      <Stack.Screen
+      <Drawer.Screen
         options={{
           title: 'Settings',
           headerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: '#121212',
           },
           headerTintColor: '#fff',
         }}
