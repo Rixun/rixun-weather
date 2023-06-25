@@ -5,15 +5,15 @@ import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
 import HorizontalCards from '../HorizontalCards/HorizontalCards';
 import VerticalWeatherList from '../VerticalList/VerticalWeatherList';
 
-export default function WeeklyWeather() {
-  const weeklyViewType = useSettingStore((state) => state.weeklyViewType);
-  const weeklyForecastData = useWeatherStore((state) => state.weekly);
+export default function DailyWeather() {
+  const dailyViewType = useSettingStore((state) => state.dailyViewType);
+  const dailyForecastData = useWeatherStore((state) => state.daily);
 
-  switch (weeklyViewType) {
+  switch (dailyViewType) {
     case HORIZONTAL_CARDS:
-      return <HorizontalCards data={weeklyForecastData} />;
+      return <HorizontalCards data={dailyForecastData} />;
     case VERTICAL_LIST:
-      return <VerticalWeatherList listData={weeklyForecastData} />;
+      return <VerticalWeatherList listData={dailyForecastData} />;
     case NONE:
     default:
       return null;

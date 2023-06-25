@@ -7,8 +7,8 @@ import { Drawer } from '../../utility/Drawer';
 export default function Settings({}) {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
   const setHourlyViewType = useSettingStore((state) => state.setHourlyViewType);
-  const weeklyViewType = useSettingStore((state) => state.weeklyViewType);
-  const setWeeklyViewType = useSettingStore((state) => state.setWeeklyViewType);
+  const dailyViewType = useSettingStore((state) => state.dailyViewType);
+  const setDailyViewType = useSettingStore((state) => state.setDailyViewType);
   return (
     <View style={styles.container}>
       <Drawer.Screen
@@ -31,14 +31,14 @@ export default function Settings({}) {
         setSelectedOption={setHourlyViewType}
       />
       <SettingSection
-        title="Weekly Forecast"
+        title="Daily Forecast"
         options={[
           { image: 'Image Here', name: HORIZONTAL_CARDS },
           { image: 'Image Here', name: VERTICAL_LIST },
           { image: 'Image Here', name: NONE },
         ]}
-        selectedOption={weeklyViewType}
-        setSelectedOption={setWeeklyViewType}
+        selectedOption={dailyViewType}
+        setSelectedOption={setDailyViewType}
       />
     </View>
   );

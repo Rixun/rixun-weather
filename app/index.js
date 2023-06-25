@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
 import { useLocationStore, useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
-import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
+import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
 import { Drawer } from '../utility/Drawer';
 
@@ -19,7 +19,9 @@ export default function Home() {
         setAllForecast(result);
       }
     };
-    fetchData();
+    if (Object.keys(defaultLocation).length > 0) {
+      fetchData();
+    }
   }, [defaultLocation]);
 
   return (
@@ -41,7 +43,7 @@ export default function Home() {
       {Object.keys(defaultLocation).length > 0 ? (
         <>
           <Hero />
-          <WeeklyWeather />
+          <DailyWeather />
         </>
       ) : (
         <Link style={styles.text} href="/Search">
