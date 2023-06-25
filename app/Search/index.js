@@ -12,6 +12,9 @@ export default function Search() {
   const searchList = useSearchStore((state) => state.searchList);
   const setSearchList = useSearchStore((state) => state.setSearchList);
   const addNewLocation = useLocationStore((state) => state.addNewLocation);
+  const setDefaultLocation = useLocationStore(
+    (state) => state.setDefaultLocation
+  );
   const [searchText, setSearchText] = useState('');
 
   const clearFields = () => {
@@ -21,6 +24,13 @@ export default function Search() {
 
   const onPress = (listItem) => {
     addNewLocation({
+      name: listItem.name,
+      latitude: listItem.latitude,
+      longitude: listItem.longitude,
+      admin1: listItem.admin1,
+      country: listItem.country,
+    });
+    setDefaultLocation({
       name: listItem.name,
       latitude: listItem.latitude,
       longitude: listItem.longitude,

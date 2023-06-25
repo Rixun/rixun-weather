@@ -1,4 +1,4 @@
-import { View, StyleSheet, Button, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, Text } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
@@ -32,15 +32,25 @@ export default function Home() {
           },
           headerTintColor: '#fff',
           headerRight: () => (
-            <Link style={[styles.link, styles.headerLink]} href="/Search">
+            <Link style={[styles.text, styles.headerLink]} href="/Search">
               <Icon name="Search" size={26} />
             </Link>
           ),
         }}
       />
-      {/* <Icon name="Back" width={100} height={100} /> */}
-      <Hero />
-      <WeeklyWeather />
+      {Object.keys(defaultLocation).length > 0 ? (
+        <>
+          <Hero />
+          <WeeklyWeather />
+        </>
+      ) : (
+        <>
+          <Link style={[styles.text, styles.headerLink]} href="/Search">
+            <Icon name="Search" width={100} height={100} />
+            <Text style={styles.text}>Search Location</Text>
+          </Link>
+        </>
+      )}
     </ScrollView>
   );
 }
@@ -53,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
-  link: {
+  text: {
     color: '#fff',
   },
   headerLink: {
