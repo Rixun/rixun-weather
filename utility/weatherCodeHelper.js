@@ -11,11 +11,11 @@ export const getWeatherIcon = (weatherCode) => {
     55: 'CloudRain', // Drizzle: Dense
     56: 'CloudLightRain', // Freezing Drizzle: Light
     57: 'CloudRain', // Freezing Drizzle: Dense
-    61: 'RaindropEmpty', // Rain: Slight
-    63: 'RaindropFull', // Rain: Moderate
-    65: 'RaindropFull', // Rain: Heavy
-    66: 'RaindropFull', // Freezing Rain: Light
-    67: 'RaindropFull', // Freezing Rain: Heavy
+    61: 'CloudLightRain', // Rain: Slight
+    63: 'CloudRain', // Rain: Moderate
+    65: 'CloudRain', // Rain: Heavy
+    66: 'CloudRain', // Freezing Rain: Light
+    67: 'CloudRain', // Freezing Rain: Heavy
     71: 'CloudSnow', // Snow fall: Slight
     73: 'CloudSnow', // Snow fall: Moderate
     75: 'CloudSnow', // Snow fall: Heavy
@@ -27,7 +27,7 @@ export const getWeatherIcon = (weatherCode) => {
     86: 'SunCloudSnow', // Snow showers: Heavy
     95: 'CloudRainThunder', // Thunderstorm: Slight or Moderate
     96: 'CloudRainThunder', // Thunderstorm w/Hail: Slight
-    99: 'CloudRainThunder' // Thunderstorm w/Hail: Heavy
+    99: 'CloudRainThunder', // Thunderstorm w/Hail: Heavy
   };
   return WeatherCodeEnum[weatherCode];
 };

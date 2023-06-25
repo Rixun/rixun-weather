@@ -1,13 +1,17 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const GetStringDay = (currentDate) => {
+const getStringDay = (currentDate) => {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
   return days[currentDate];
-}
+};
 
-export default function HorizontalCardItem({ day, dailyMaxTemp, dailyMinTemp }) {
+export default function HorizontalCardItem({
+  day,
+  dailyMaxTemp,
+  dailyMinTemp,
+}) {
   let currentDate = new Date(day);
-  let formattedDay = GetStringDay(currentDate.getDay());
+  let formattedDay = getStringDay(currentDate.getDay());
 
   return (
     <View style={styles.cardContainer}>
@@ -16,9 +20,11 @@ export default function HorizontalCardItem({ day, dailyMaxTemp, dailyMinTemp }) 
         style={styles.img}
         source={require('../../../assets/sun-icon.png')}
       />
-      <Text style={styles.temperatureReading}>{dailyMaxTemp} / {dailyMinTemp}</Text>
+      <Text style={styles.temperatureReading}>
+        {dailyMaxTemp} / {dailyMinTemp}
+      </Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -30,7 +36,7 @@ const styles = StyleSheet.create({
     minWidth: 40,
     borderWidth: 0.5,
     margin: 1,
-    padding: 1.5
+    padding: 1.5,
   },
   formattedDay: {
     color: '#fff',
@@ -41,6 +47,6 @@ const styles = StyleSheet.create({
   },
   temperatureReading: {
     color: '#fff',
-    fontSize: 11
-  }
-})
+    fontSize: 11,
+  },
+});

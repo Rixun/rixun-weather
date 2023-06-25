@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
-import { useState } from 'react';
-import SettingSection from './Section';
+import { StyleSheet, View } from 'react-native';
+import SettingSection from './Section/Section';
 import { useSettingStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
+import { Drawer } from '../../utility/Drawer';
 
 export default function Settings({}) {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
@@ -12,7 +11,15 @@ export default function Settings({}) {
   const setWeeklyViewType = useSettingStore((state) => state.setWeeklyViewType);
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: 'Settings' }} />
+      <Drawer.Screen
+        options={{
+          title: 'Settings',
+          headerStyle: {
+            backgroundColor: '#121212',
+          },
+          headerTintColor: '#fff',
+        }}
+      />
       <SettingSection
         title="Hourly Forecast"
         options={[

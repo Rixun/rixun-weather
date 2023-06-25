@@ -3,12 +3,12 @@ import React from 'react';
 import Icons from './IconMap';
 
 export default function Icon(props) {
-  const { name, width, height, ...extraProps } = props;
+  const { name, width, height, size, ...extraProps } = props;
   const Icon = Icons[name] || '';
 
   return Icon ? (
     <View style={styles.container}>
-      <Icon width={width} height={height} {...extraProps} />
+      <Icon width={width ?? size} height={height ?? size} {...extraProps} />
     </View>
   ) : (
     <></>

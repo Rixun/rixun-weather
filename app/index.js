@@ -1,35 +1,57 @@
-import { View, StyleSheet } from 'react-native';
-import { Link, Stack } from 'expo-router';
+import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { Link } from 'expo-router';
 import { useEffect } from 'react';
-import { GetWeatherForecast } from '../api/api';
-import { useWeatherStore } from '../store/store';
+import { getWeatherForecast } from '../api/api';
+import { useLocationStore, useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
+import Icon from '../components/Icon/Icon';
+import { Drawer } from '../utility/Drawer';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
-  // const forecast = useWeatherStore((state) => state.forecast);
-  // const current = useWeatherStore((state) => state.current);
-  // const dailyHourly = useWeatherStore((state) => state.dailyHourly);
-  // const weekly = useWeatherStore((state) => state.weekly);
+  const defaultLocation = useLocationStore((state) => state.defaultLocation);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await GetWeatherForecast();
-      setAllForecast(result);
+      const result = await getWeatherForecast(defaultLocation);
+      if (!result.error) {
+        setAllForecast(result);
+      }
     };
     fetchData();
-  }, []);
+  }, [defaultLocation]);
 
   return (
-    <View style={styles.container}>
-      <Stack.Screen options={{ title: 'Overview', headerShown: false }} />
-      <Link style={styles.link} href="/Settings">
-        Go to Settings
-      </Link>
-      <Hero />
-      <WeeklyWeather />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Drawer.Screen
+        options={{
+          title: 'Home',
+          headerStyle: {
+            backgroundColor: '#121212',
+          },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <Link style={[styles.text, styles.headerLink]} href="/Search">
+              <Icon name="Search" size={26} />
+            </Link>
+          ),
+        }}
+      />
+      {Object.keys(defaultLocation).length > 0 ? (
+        <>
+          <Hero />
+          <WeeklyWeather />
+        </>
+      ) : (
+        <Link style={styles.text} href="/Search">
+          <View>
+            <Icon name="Search" width={100} height={100} />
+            <Text style={styles.text}>Search Location</Text>
+          </View>
+        </Link>
+      )}
+    </ScrollView>
   );
 }
 
@@ -41,7 +63,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
-  link: {
+  text: {
     color: '#fff',
+  },
+  headerLink: {
+    padding: 16,
   },
 });
