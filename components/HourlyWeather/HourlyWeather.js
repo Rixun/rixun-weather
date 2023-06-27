@@ -6,14 +6,27 @@ import HorizontalCards from '../HorizontalCards/HorizontalCards';
 import VerticalWeatherList from '../VerticalList/VerticalWeatherList';
 
 export default function HourlyWeather() {
-  const dailyViewType = useSettingStore((state) => state.hourlyViewType);
-  const dailyForecastData = useWeatherStore((state) => state.daily);
+  const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
+  const hourlyForecastData = useWeatherStore((state) => state.hourly);
 
-  switch (dailyViewType) {
+  // console.log(hourlyForecastData);
+  const convertCardForecastData = (forecastData) => {
+    return forecastData?.map((forecastItem, index) => ({
+      topCardText: index, // need to convert to hour value
+      bottomCardText: `${forecastItem.temperature}`,
+      weatherCode: forecastItem.weatherCode,
+    }));
+  };
+
+  switch (hourlyViewType) {
     case HORIZONTAL_CARDS:
-      return <HorizontalCards data={dailyForecastData} />;
+      return (
+        <HorizontalCards
+          weatherData={convertCardForecastData(hourlyForecastData)}
+        />
+      );
     case VERTICAL_LIST:
-      return <VerticalWeatherList listData={dailyForecastData} />;
+      return <VerticalWeatherList listData={hourlyForecastData} />;
     case NONE:
     default:
       return null;

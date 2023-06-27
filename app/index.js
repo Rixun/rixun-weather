@@ -7,6 +7,7 @@ import Hero from '../components/Hero/Hero';
 import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
 import { Drawer } from '../utility/Drawer';
+import HourlyWeather from '../components/HourlyWeather/HourlyWeather';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
@@ -43,6 +44,7 @@ export default function Home() {
       {Object.keys(defaultLocation).length > 0 ? (
         <>
           <Hero />
+          <HourlyWeather />
           <DailyWeather />
         </>
       ) : (
@@ -59,6 +61,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
     flex: 1,
     backgroundColor: '#161616',
     alignItems: 'center',

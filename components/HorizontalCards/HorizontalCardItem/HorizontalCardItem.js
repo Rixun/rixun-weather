@@ -1,28 +1,19 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
-
-const getStringDay = (currentDate) => {
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-  return days[currentDate];
-};
+import { StyleSheet, Text, View } from 'react-native';
+import Icon from '../../Icon/Icon';
+import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
 export default function HorizontalCardItem({
-  day,
-  dailyMaxTemp,
-  dailyMinTemp,
+  topCardText,
+  bottomCardText,
+  weatherCode,
 }) {
-  let currentDate = new Date(day);
-  let formattedDay = getStringDay(currentDate.getDay());
+  const weatherIcon = getWeatherIcon(weatherCode);
 
   return (
     <View style={styles.cardContainer}>
-      <Text style={styles.formattedDay}>{formattedDay}</Text>
-      <Image
-        style={styles.img}
-        source={require('../../../assets/sun-icon.png')}
-      />
-      <Text style={styles.temperatureReading}>
-        {dailyMaxTemp} / {dailyMinTemp}
-      </Text>
+      <Text style={styles.text}>{topCardText}</Text>
+      <Icon name={weatherIcon} width={35} height={35} style={styles.icon} />
+      <Text style={styles.smallText}>{bottomCardText}</Text>
     </View>
   );
 }
@@ -30,23 +21,21 @@ export default function HorizontalCardItem({
 const styles = StyleSheet.create({
   cardContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: '#e2e2e2',
-    height: 80,
+    backgroundColor: '#262626',
+    height: 90,
     minWidth: 40,
-    borderWidth: 0.5,
-    margin: 1,
-    padding: 1.5,
+    padding: 8,
+    borderRadius: 4,
   },
-  formattedDay: {
+  text: {
     color: '#fff',
+    fontSize: 16,
   },
-  img: {
-    width: 35,
-    height: 35,
-  },
-  temperatureReading: {
+  smallText: {
     color: '#fff',
-    fontSize: 11,
+    fontSize: 12,
+  },
+  icon: {
+    paddingVertical: 2,
   },
 });

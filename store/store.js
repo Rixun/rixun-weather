@@ -11,6 +11,7 @@ export const useWeatherStore = create((set) => ({
     set((state) => ({
       forecast: forecast,
       current: forecast.current,
+      hourly: forecast.hourly,
       daily: forecast.daily,
     })),
 }));

@@ -6,8 +6,7 @@ import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
 export default function DailyWeatherVerticalListItem(props) {
   const { date, weatherCode, rainChance = '0%', tempMin, tempMax } = props;
-  const [year, month, day] = date.split('-');
-  const weekday = getWeekDay(new Date(year, month - 1, day).getDay());
+  const weekday = getWeekDay(new Date(date).getDay());
   const weatherIcon = getWeatherIcon(weatherCode);
   return (
     <View style={styles.container}>
