@@ -1,11 +1,6 @@
-import jsonData from './suburbs.json';
-let SEARCH_BY = 'suburb'; // make configurable later
-
-const getCurrentRoundedDownHourIndex = () => {
-  const currentHour = new Date();
-  currentHour.setMinutes(0, 0, 0);
-  return currentHour.getHours();
-};
+import { getCurrentRoundedDownHourIndex } from '../utility/dateHelper';
+// import jsonData from './suburbs.json';
+// let SEARCH_BY = 'suburb'; // make configurable later
 
 const mapCurrentForecast = (currentWeather, hourlyWeather, dailyWeather) => {
   const currentForecast = {};
@@ -26,6 +21,7 @@ const mapHourlyForecast = (hourlyWeather) => {
       temperature: hourlyWeather['temperature_2m'][i],
       humidity: hourlyWeather['relativehumidity_2m'][i],
       precipitation_probability: hourlyWeather['precipitation_probability'][i],
+      weatherCode: hourlyWeather['weathercode'][i],
     });
   }
   return hourlyForecast;
@@ -52,7 +48,14 @@ export async function getWeatherForecast(locationData) {
   let dailyForecast = [];
 
   let response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${locationData.latitude}&longitude=${locationData.longitude}&timezone=Australia%2FSydney&current_weather=true&daily=weathercode&daily=temperature_2m_max,temperature_2m_min,uv_index_max,uv_index_clear_sky_max&hourly=temperature_2m,relativehumidity_2m,precipitation_probability`
+    ` https://api.open-meteo.com/v1/forecast?` +
+      `latitude=${locationData.latitude}` +
+      `&longitude=${locationData.longitude}` +
+      `&timezone=Australia%2FSydney` +
+      `&current_weather=true` +
+      `&daily=weathercode` +
+      `&daily=temperature_2m_max,temperature_2m_min,uv_index_max,uv_index_clear_sky_max` +
+      `&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,weathercode`
   );
 
   let resData = await response.json();
