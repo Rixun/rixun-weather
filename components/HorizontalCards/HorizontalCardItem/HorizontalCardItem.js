@@ -14,12 +14,12 @@ export default function HorizontalCardItem({
     <View style={styles.container}>
       <View style={styles.cardContainer}>
         <Text style={styles.text}>{timeText}</Text>
-        <Icon name={weatherIcon} width={30} height={30} />
+        <Icon name={weatherIcon} size={30} />
         <Text style={styles.smallText}>{temperatureText}</Text>
         <View style={styles.rowContainer}>
           {/* TODO: variable Raindrop Icon */}
-          <Icon name="RaindropEmpty" width={10} height={10} />
-          <Text style={styles.smallText}>{rainChanceText}</Text>
+          <Icon name="RaindropEmpty" size={11} />
+          <Text style={styles.tinyText}>{rainChanceText}</Text>
         </View>
       </View>
     </View>
@@ -28,8 +28,8 @@ export default function HorizontalCardItem({
 
 const styles = StyleSheet.create({
   container: {
-    width: 60,
-    maxWidth: 60,
+    width: 62,
+    maxWidth: 62,
   },
   cardContainer: {
     alignItems: 'center',
@@ -46,10 +46,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 14,
+    fontSize: 16,
   },
   smallText: {
     color: '#fff',
     fontSize: 12,
+  },
+  tinyText: {
+    color: '#fff',
+    fontSize: 11,
   },
 });

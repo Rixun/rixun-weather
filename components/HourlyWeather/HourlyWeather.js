@@ -10,7 +10,6 @@ export default function HourlyWeather() {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
   const hourlyForecastData = useWeatherStore((state) => state.hourly);
 
-  // console.log(hourlyForecastData);
   const convertCardForecastData = (forecastData) => {
     return forecastData?.map((forecastItem, index) => ({
       timeText: convertIndexToHour(index),
@@ -28,7 +27,11 @@ export default function HourlyWeather() {
         />
       );
     case VERTICAL_LIST:
-      return <VerticalWeatherList listData={hourlyForecastData} />;
+      return (
+        <VerticalWeatherList
+          weatherData={convertCardForecastData(hourlyForecastData)}
+        />
+      );
     case NONE:
     default:
       return null;

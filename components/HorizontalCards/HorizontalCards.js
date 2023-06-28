@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     maxWidth: 768,
-    paddingVertical: 16,
-    paddingHorizontal: 8,
     marginHorizontal: 'auto',
   },
   contentContainer: {

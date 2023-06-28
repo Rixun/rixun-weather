@@ -61,12 +61,10 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#161616',
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 16,
+    gap: 16,
   },
   text: {
     color: '#fff',
