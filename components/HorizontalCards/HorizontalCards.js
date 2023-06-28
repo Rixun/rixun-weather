@@ -8,8 +8,9 @@ export default function HorizontalCards(props) {
     <View style={styles.container}>
       <FlatList
         horizontal={true}
-        initialNumToRender={3}
         data={weatherData}
+        initialNumToRender={3}
+        contentContainerStyle={styles.contentContainer}
         renderItem={({ item }) => {
           return <HorizontalCardItem {...item} />;
         }}
@@ -25,7 +26,12 @@ export default function HorizontalCards(props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    maxWidth: 768,
     paddingVertical: 16,
     paddingHorizontal: 8,
+    marginHorizontal: 'auto',
+  },
+  contentContainer: {
+    marginHorizontal: 'auto',
   },
 });
