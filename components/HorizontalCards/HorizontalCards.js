@@ -15,9 +15,9 @@ export default function HorizontalCards(props) {
           return <HorizontalCardItem {...item} />;
         }}
         keyExtractor={(item, index) =>
-          item.topCardText + item.bottomCardText + index
+          item.timeText + item.temperatureText + index
         }
-        ItemSeparatorComponent={() => <View style={{ height: 8, width: 8 }} />}
+        ItemSeparatorComponent={() => <View style={{ height: 4, width: 4 }} />}
       />
     </View>
   );

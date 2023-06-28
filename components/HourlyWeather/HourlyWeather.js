@@ -4,6 +4,7 @@ import { useSettingStore, useWeatherStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
 import HorizontalCards from '../HorizontalCards/HorizontalCards';
 import VerticalWeatherList from '../VerticalList/VerticalWeatherList';
+import { convertIndexToHour } from '../../utility/dateHelper';
 
 export default function HourlyWeather() {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);
@@ -12,8 +13,9 @@ export default function HourlyWeather() {
   // console.log(hourlyForecastData);
   const convertCardForecastData = (forecastData) => {
     return forecastData?.map((forecastItem, index) => ({
-      topCardText: index, // need to convert to hour value
-      bottomCardText: `${forecastItem.temperature}`,
+      timeText: convertIndexToHour(index),
+      temperatureText: `${forecastItem.temperature}°`,
+      rainChanceText: `${forecastItem.rainChance}%`,
       weatherCode: forecastItem.weatherCode,
     }));
   };

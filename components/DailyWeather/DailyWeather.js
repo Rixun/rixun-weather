@@ -12,8 +12,9 @@ export default function DailyWeather() {
 
   const convertCardForecastData = (forecastData) => {
     return forecastData?.map((forecastItem) => ({
-      topCardText: getShortenedWeekDay(new Date(forecastItem.date).getDay()),
-      bottomCardText: `${forecastItem.tempMax} | ${forecastItem.tempMin}`,
+      timeText: getShortenedWeekDay(new Date(forecastItem.date).getDay()),
+      temperatureText: `${forecastItem.tempMax} | ${forecastItem.tempMin}`,
+      rainChanceText: `${forecastItem.rainChance}%`,
       weatherCode: forecastItem.weatherCode,
     }));
   };

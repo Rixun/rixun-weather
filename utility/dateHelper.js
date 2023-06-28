@@ -20,3 +20,9 @@ export const getCurrentRoundedDownHourIndex = () => {
   currentHour.setMinutes(0, 0, 0);
   return currentHour.getHours();
 };
+
+export const convertIndexToHour = (index) => {
+  const timePeriod = index < 12 ? 'am' : 'pm';
+  const hour = index % 12 || 12;
+  return `${hour} ${timePeriod}`;
+};

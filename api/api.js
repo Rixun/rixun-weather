@@ -20,7 +20,7 @@ const mapHourlyForecast = (hourlyWeather) => {
     hourlyForecast.push({
       temperature: hourlyWeather['temperature_2m'][i],
       humidity: hourlyWeather['relativehumidity_2m'][i],
-      precipitation_probability: hourlyWeather['precipitation_probability'][i],
+      rainChance: hourlyWeather['precipitation_probability'][i],
       weatherCode: hourlyWeather['weathercode'][i],
     });
   }
@@ -35,6 +35,7 @@ const mapDailyForecast = (dailyWeather) => {
       weatherCode: dailyWeather['weathercode'][i],
       tempMax: dailyWeather['temperature_2m_max'][i],
       tempMin: dailyWeather['temperature_2m_min'][i],
+      rainChance: dailyWeather['precipitation_probability_max'][i],
       uv: dailyWeather['uv_index_max'][i],
       uvClearSky: dailyWeather['uv_index_clear_sky_max'][i],
     });
@@ -54,7 +55,7 @@ export async function getWeatherForecast(locationData) {
       `&timezone=Australia%2FSydney` +
       `&current_weather=true` +
       `&daily=weathercode` +
-      `&daily=temperature_2m_max,temperature_2m_min,uv_index_max,uv_index_clear_sky_max` +
+      `&daily=temperature_2m_max,temperature_2m_min,uv_index_max,uv_index_clear_sky_max,precipitation_probability_max` +
       `&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,weathercode`
   );
 
