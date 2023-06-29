@@ -15,9 +15,10 @@ const mapCurrentForecast = (currentWeather, hourlyWeather, dailyWeather) => {
 };
 const mapHourlyForecast = (hourlyWeather) => {
   const hourlyForecast = [];
-  // Future task: Get 24 hr hourly data from current hour, instead of just 0-24
-  for (let i = 0; i <= 24; i++) {
+  const currentHour = getCurrentRoundedDownHourIndex();
+  for (let i = currentHour; i <= currentHour + 24; i++) {
     hourlyForecast.push({
+      hourIndex: i,
       temperature: hourlyWeather['temperature_2m'][i],
       humidity: hourlyWeather['relativehumidity_2m'][i],
       rainChance: hourlyWeather['precipitation_probability'][i],
