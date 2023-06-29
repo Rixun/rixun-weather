@@ -17,8 +17,7 @@ export default function HorizontalCardItem({
         <Icon name={weatherIcon} size={30} />
         <Text style={styles.smallText}>{temperatureText}</Text>
         <View style={styles.rowContainer}>
-          {/* TODO: variable Raindrop Icon */}
-          <Icon name="RaindropEmpty" size={11} />
+          <Icon name="Raindrop" size={11} rainChanceText={rainChanceText} />
           <Text style={styles.tinyText}>{rainChanceText}</Text>
         </View>
       </View>

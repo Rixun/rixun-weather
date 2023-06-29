@@ -50,7 +50,7 @@ export default function Home() {
       ) : (
         <Link style={styles.text} href="/Search">
           <View>
-            <Icon name="Search" width={100} height={100} />
+            <Icon name="Search" size={100} />
             <Text style={styles.text}>Search Location</Text>
           </View>
         </Link>

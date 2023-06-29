@@ -3,7 +3,7 @@ import React from 'react';
 import Icons from './IconMap';
 
 export default function Icon(props) {
-  const { name, width, height, size, ...extraProps } = props;
+  const { name, width, height, size = null, ...extraProps } = props;
   const Icon = Icons[name] || '';
 
   return Icon ? (

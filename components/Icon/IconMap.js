@@ -9,7 +9,7 @@ import MoonCloud from './Icons/MoonCloud';
 import MoonCloudLightRain from './Icons/MoonCloudLightRain';
 import MoonCloudRain from './Icons/MoonCloudRain';
 import MoonCloudSnow from './Icons/MoonCloudSnow';
-import RaindropEmpty from './Icons/RaindropEmpty';
+import Raindrop from './Icons/Raindrop';
 import RaindropFull from './Icons/RaindropFull';
 import Search from './Icons/Search';
 import Sun from './Icons/Sun';
@@ -31,7 +31,7 @@ export default {
   MoonCloudLightRain,
   MoonCloudRain,
   MoonCloudSnow,
-  RaindropEmpty,
+  Raindrop,
   RaindropFull,
   Search,
   Sun,
