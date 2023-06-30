@@ -4,9 +4,9 @@ import Icon from '../../Icon/Icon';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
 export default function VerticalListItem(props) {
-  const { timeText, weatherCode, rainChanceText, temperatureText } = props;
-  const weatherIcon = getWeatherIcon(weatherCode);
-  // console.log(rainChanceText);
+  const { timeText, hourIndex, weatherCode, rainChanceText, temperatureText } =
+    props;
+  const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
   return (
     <View style={styles.container}>
       <View style={[styles.container, styles.subContainer, styles.flexBig]}>

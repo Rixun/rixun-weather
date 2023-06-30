@@ -4,11 +4,12 @@ import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
 export default function HorizontalCardItem({
   timeText,
+  hourIndex,
   temperatureText,
   rainChanceText,
   weatherCode,
 }) {
-  const weatherIcon = getWeatherIcon(weatherCode);
+  const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
 
   return (
     <View style={styles.container}>

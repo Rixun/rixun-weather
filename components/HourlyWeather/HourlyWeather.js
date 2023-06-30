@@ -13,6 +13,7 @@ export default function HourlyWeather() {
   const convertCardForecastData = (forecastData) => {
     return forecastData?.map((forecastItem, index) => ({
       timeText: convertIndexToHour(forecastItem.hourIndex),
+      hourIndex: forecastItem.hourIndex,
       temperatureText: `${forecastItem.temperature}°`,
       rainChanceText: `${forecastItem.rainChance}%`,
       weatherCode: forecastItem.weatherCode,

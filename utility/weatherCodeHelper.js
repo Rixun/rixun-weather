@@ -1,9 +1,24 @@
-export const getWeatherIcon = (weatherCode) => {
+import {
+  getCurrentRoundedDownHourIndex,
+  convertHourTo24Hour,
+} from './dateHelper';
+
+export const getWeatherIcon = (weatherCode, givenHour) => {
+  const currentHour = getCurrentRoundedDownHourIndex();
+  const convertedHour = convertHourTo24Hour(givenHour);
+  const isDayTime = () => {
+    if (convertedHour) {
+      return convertedHour <= 18 && convertedHour >= 6;
+    } else {
+      return currentHour <= 18 && currentHour >= 6;
+    }
+  };
+
   const WeatherCodeEnum = {
-    0: 'Sun', // Clear Sky
-    1: 'Sun', // Mainly clear
-    2: 'SunCloud', // Partly cloudy
-    3: 'SunCloud', // Overcast
+    0: isDayTime() ? 'Sun' : 'Moon', // Clear Sky
+    1: isDayTime() ? 'Sun' : 'Moon', // Mainly clear
+    2: isDayTime() ? 'SunCloud' : 'MoonCloud', // Partly cloudy
+    3: isDayTime() ? 'SunCloud' : 'MoonCloud', // Overcast
     45: 'Fog', // Fog
     48: 'Fog', // Depositing rime fog
     51: 'CloudLightRain', // Drizzle: Light
@@ -19,12 +34,12 @@ export const getWeatherIcon = (weatherCode) => {
     71: 'CloudSnow', // Snow fall: Slight
     73: 'CloudSnow', // Snow fall: Moderate
     75: 'CloudSnow', // Snow fall: Heavy
-    77: 'SunCloudSnow', // Snow Grains
+    77: 'CloudSnow', // Snow Grains
     80: 'CloudLightRain', // Rain showers: Slight
     81: 'CloudRain', // Rain showers: Moderate
     82: 'CloudRain', // Rain showers: Heavy
-    85: 'SunCloudSnow', // Snow showers: Slight
-    86: 'SunCloudSnow', // Snow showers: Heavy
+    85: 'CloudSnow', // Snow showers: Slight
+    86: 'CloudSnow', // Snow showers: Heavy
     95: 'CloudRainThunder', // Thunderstorm: Slight or Moderate
     96: 'CloudRainThunder', // Thunderstorm w/Hail: Slight
     99: 'CloudRainThunder', // Thunderstorm w/Hail: Heavy

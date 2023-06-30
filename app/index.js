@@ -11,6 +11,7 @@ import HourlyWeather from '../components/HourlyWeather/HourlyWeather';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
+  const forecastData = useWeatherStore((state) => state.forecast);
   const defaultLocation = useLocationStore((state) => state.defaultLocation);
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Home() {
           ),
         }}
       />
-      {Object.keys(defaultLocation).length > 0 ? (
+      {Object.keys(forecastData).length > 0 ? (
         <>
           <Hero />
           <HourlyWeather />
@@ -65,6 +66,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#161616',
     padding: 16,
     gap: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     color: '#fff',
