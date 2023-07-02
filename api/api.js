@@ -50,7 +50,7 @@ export async function getWeatherForecast(locationData) {
   let dailyForecast = [];
 
   let response = await fetch(
-    ` https://api.open-meteo.com/v1/forecast?` +
+    `https://api.open-meteo.com/v1/forecast?` +
       `latitude=${locationData.latitude}` +
       `&longitude=${locationData.longitude}` +
       `&timezone=Australia%2FSydney` +

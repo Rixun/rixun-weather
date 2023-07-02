@@ -9,18 +9,18 @@ export default function VerticalListItem(props) {
   const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
   return (
     <View style={styles.container}>
-      <View style={[styles.container, styles.subContainer, styles.flexBig]}>
+      <View style={[styles.subContainer, styles.flexStart]}>
         <Text style={styles.text}>{timeText}</Text>
       </View>
-      <View style={[styles.container, styles.subContainer]}>
-        <Icon name="Raindrop" size={14} rainChanceText={rainChanceText} />
+      <View style={[styles.subContainer, styles.flexReverse]}>
         <Text style={styles.text}>{rainChanceText}</Text>
+        <Icon name="Raindrop" size={14} rainChanceText={rainChanceText} />
       </View>
-      <View style={[styles.container, styles.subContainer]}>
+      <View style={[styles.subContainer]}>
         <Icon name={weatherIcon} size={20} style={styles.icon} />
         {/* <Icon name="Moon" width={20} height={20} style={styles.icon} /> */}
       </View>
-      <View style={[styles.container, styles.subContainer, styles.flexReverse]}>
+      <View style={[styles.subContainer, styles.flexColumn]}>
         <Text style={styles.text}>{temperatureText}</Text>
       </View>
     </View>
@@ -31,16 +31,24 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 8,
   },
   subContainer: {
-    flexBasis: '20%',
-    flexGrow: 1,
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
   },
-  flexBig: {
-    flexBasis: '30%',
+  flexStart: {
+    alignItems: 'flex-start',
   },
   flexReverse: {
     flexDirection: 'row-reverse',
+  },
+  flexColumn: {
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   },
   text: {
     color: '#FFF',

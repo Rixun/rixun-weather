@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Svg, { Defs, LinearGradient, Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: style, title */
 const SvgComponent = ({ rainChanceText, ...extraProps }) => {
   return (
@@ -18,8 +18,8 @@ const SvgComponent = ({ rainChanceText, ...extraProps }) => {
           y1="1"
           y2="0"
         >
-          <stop offset={rainChanceText} stopColor="#0baeff" />
-          <stop offset={rainChanceText} stopColor="transparent" />
+          <Stop offset={rainChanceText} stopColor="#0baeff" />
+          <Stop offset={rainChanceText} stopColor="transparent" />
         </LinearGradient>
       </Defs>
       <Path

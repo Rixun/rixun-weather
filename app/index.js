@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
@@ -28,7 +28,7 @@ export default function Home() {
   }, [defaultLocation]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Drawer.Screen
         options={{
           title: '',
@@ -48,7 +48,7 @@ export default function Home() {
       ) : (
         <DefaultHomeScreen />
       )}
-    </ScrollView>
+    </View>
   );
 }
 
