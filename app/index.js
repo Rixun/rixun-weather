@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
@@ -8,6 +8,7 @@ import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
 import { Drawer } from '../utility/Drawer';
 import HourlyWeather from '../components/HourlyWeather/HourlyWeather';
+import DefaultHomeScreen from '../components/DefaultHomeScreen/DefaultHomeScreen';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
@@ -30,11 +31,7 @@ export default function Home() {
     <ScrollView contentContainerStyle={styles.container}>
       <Drawer.Screen
         options={{
-          title: 'Home',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: '#fff',
+          title: '',
           headerRight: () => (
             <Link style={[styles.text, styles.headerLink]} href="/Search">
               <Icon name="Search" size={26} />
@@ -49,12 +46,7 @@ export default function Home() {
           <DailyWeather />
         </>
       ) : (
-        <Link style={styles.text} href="/Search">
-          <View>
-            <Icon name="Search" size={100} />
-            <Text style={styles.text}>Search Location</Text>
-          </View>
-        </Link>
+        <DefaultHomeScreen />
       )}
     </ScrollView>
   );

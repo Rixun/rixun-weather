@@ -1,4 +1,5 @@
 import Back from './Icons/Back';
+import Close from './Icons/Close';
 import CloudLightRain from './Icons/CloudLightRain';
 import CloudRain from './Icons/CloudRain';
 import CloudRainThunder from './Icons/CloudRainThunder';
@@ -21,6 +22,7 @@ import Wind from './Icons/Wind';
 
 export default {
   Back,
+  Close,
   CloudLightRain,
   CloudRain,
   CloudRainThunder,

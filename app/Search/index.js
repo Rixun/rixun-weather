@@ -44,14 +44,9 @@ export default function Search() {
     <View style={styles.container}>
       <Drawer.Screen
         options={{
-          title: 'Search',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: '#fff',
           headerTitleContainerStyle: { flex: 1, width: '100%' },
           headerRightContainerStyle: { flex: 0, width: 16 },
-          headerLeft: () => <BackButton />,
+          headerLeft: () => <BackButton onBack={clearFields} />,
           headerTitle: () => (
             <SearchBar searchText={searchText} setSearchText={setSearchText} />
           ),
@@ -72,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#161616',
-    padding: 4,
+    paddingVertical: 4,
+    paddingHorizontal: 16,
   },
 });

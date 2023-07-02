@@ -14,10 +14,6 @@ export default function Settings({}) {
       <Drawer.Screen
         options={{
           title: 'Settings',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: '#fff',
         }}
       />
       <SettingSection

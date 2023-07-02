@@ -39,10 +39,13 @@ export const useLocationStore = create(
       defaultLocation: {},
       addNewLocation: (locationData) =>
         set((state) => ({ locations: [...state.locations, locationData] })),
-      removeLocation: (locationId) =>
+      removeLocation: (locationData) =>
         set((state) => ({
           locations: state.locations.filter(
-            (location) => location.id !== locationId
+            (location) =>
+              location.latitude !== locationData.latitude &&
+              location.longitude !== locationData.longitude &&
+              location.name !== locationData.name
           ),
         })),
       setDefaultLocation: (locationData) =>

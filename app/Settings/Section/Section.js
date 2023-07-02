@@ -28,7 +28,7 @@ export default function SettingSection(props) {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderBottomColor: '#292929',
   },
   title: {

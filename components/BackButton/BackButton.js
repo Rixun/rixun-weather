@@ -3,12 +3,14 @@ import React from 'react';
 import { useRouter } from 'expo-router';
 import Icon from '../Icon/Icon';
 
-export default function BackButton() {
+export default function BackButton(props) {
+  const { onBack } = props;
   const router = useRouter();
   return (
     <Pressable
       style={styles.pressable}
       onPress={() => {
+        onBack();
         router.back();
       }}
     >
