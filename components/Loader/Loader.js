@@ -26,8 +26,7 @@ export default function Loader() {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.loader, styles.bottom, rotate]} />
-      <Animated.View style={[styles.loader, styles.top, rotate]} />
+      <Animated.View style={[styles.loader, rotate]} />
     </View>
   );
 }
@@ -46,12 +45,8 @@ const styles = StyleSheet.create({
     width: '50%',
     aspectRatio: '1/1',
     borderRadius: 100,
-  },
-  top: {
     borderRightColor: '#ffffff',
     borderRightWidth: 5,
-  },
-  bottom: {
     borderLeftColor: '#0BAEFF',
     borderLeftWidth: 5,
   },
