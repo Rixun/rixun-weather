@@ -27,14 +27,15 @@ export default function SettingSection(props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     borderBottomWidth: 1,
     borderBottomColor: '#292929',
   },
   title: {
     color: '#fff',
     fontSize: 18,
-    paddingBottom: 16,
+    paddingBottom: 4,
   },
   text: {
     color: '#fff',
@@ -43,14 +44,17 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
+    paddingVertical: 4,
+    alignItems: 'center',
   },
   optionToggleContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   optionText: {
     color: '#fff',
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
   },
 });

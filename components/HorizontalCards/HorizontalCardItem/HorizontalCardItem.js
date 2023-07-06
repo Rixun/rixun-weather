@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   smallText: {
     color: '#fff',
-    fontSize: 12,
+    fontSize: 11,
   },
   tinyText: {
     color: '#fff',

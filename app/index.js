@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: '#161616',
-    padding: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     gap: 16,
     justifyContent: 'center',
     alignItems: 'center',
