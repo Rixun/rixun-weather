@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    height: '100%',
     borderRadius: 4,
   },
   largeText: {
