@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   },
   loader: {
     position: 'absolute',
-    width: '50%',
-    aspectRatio: '1/1',
-    borderRadius: 1000,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderLeftColor: '#0BAEFF',
     borderRightColor: '#ffffff',
     borderRightWidth: 5,
-    borderLeftColor: '#0BAEFF',
     borderLeftWidth: 5,
   },
 });
