@@ -13,9 +13,7 @@ export default function VerticalWeatherList(props) {
         renderItem={({ item }) => {
           return <VerticalListItem {...item} />;
         }}
-        keyExtractor={(item, index) =>
-          item.timeText + item.temperatureText + index
-        }
+        keyExtractor={(item, index) => item.timeText + item.temperatureText + index}
         ItemSeparatorComponent={() => <View style={{ height: 8, width: 4 }} />}
       />
     </View>
@@ -28,8 +26,7 @@ const styles = StyleSheet.create({
     maxWidth: 768,
     maxHeight: 220,
     marginHorizontal: 'auto',
-    paddingVertical: 16,
-    paddingHorizontal: 8,
+    padding: 8,
     backgroundColor: '#262626',
     borderRadius: 4,
   },

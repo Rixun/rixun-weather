@@ -4,8 +4,14 @@ import Icon from '../../Icon/Icon';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
 export default function VerticalListItem(props) {
-  const { timeText, hourIndex, weatherCode, rainChanceText, temperatureText } =
-    props;
+  const {
+    timeText,
+    hourIndex,
+    weatherCode,
+    rainChanceText,
+    temperatureText,
+    secondaryTemperatureText,
+  } = props;
   const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
   return (
     <View style={styles.container}>
@@ -20,8 +26,13 @@ export default function VerticalListItem(props) {
         <Icon name={weatherIcon} size={20} style={styles.icon} />
         {/* <Icon name="Moon" width={20} height={20} style={styles.icon} /> */}
       </View>
-      <View style={[styles.subContainer, styles.flexColumn]}>
+      <View style={[styles.subContainer, styles.flexEnd]}>
         <Text style={styles.text}>{temperatureText}</Text>
+        {secondaryTemperatureText && (
+          <Text style={[styles.text, styles.secondaryText]}>
+            /{secondaryTemperatureText}
+          </Text>
+        )}
       </View>
     </View>
   );
@@ -46,9 +57,9 @@ const styles = StyleSheet.create({
   flexReverse: {
     flexDirection: 'row-reverse',
   },
-  flexColumn: {
-    flexDirection: 'column',
+  flexEnd: {
     alignItems: 'flex-end',
+    justifyContent: 'flex-end',
   },
   text: {
     color: '#FFF',

@@ -14,14 +14,15 @@ export default function DailyWeather() {
     return forecastData?.map((forecastItem) => {
       let timeText;
       const date = new Date(forecastItem.date).getDay();
-      if (dailyViewType === HORIZONTAL_CARDS) {
+      if (dailyViewType !== VERTICAL_LIST) {
         timeText = getShortenedWeekDay(date);
       } else {
         timeText = getWeekDay(date);
       }
       return {
         timeText: timeText,
-        temperatureText: `${forecastItem.tempMax}°/${forecastItem.tempMin}°`,
+        temperatureText: `${forecastItem.tempMax}°`,
+        secondaryTemperatureText: `${forecastItem.tempMin}°`,
         rainChanceText: `${forecastItem.rainChance}%`,
         weatherCode: forecastItem.weatherCode,
       };
@@ -31,14 +32,14 @@ export default function DailyWeather() {
   switch (dailyViewType) {
     case HORIZONTAL_CARDS:
       return (
-        <HorizontalCards weatherData={convertForecastData(dailyForecastData)} />
-      );
-    case VERTICAL_LIST:
-      return (
-        <VerticalWeatherList
+        <HorizontalCards
           weatherData={convertForecastData(dailyForecastData)}
+          horizontal={false}
+          numColumns={7}
         />
       );
+    case VERTICAL_LIST:
+      return <VerticalWeatherList weatherData={convertForecastData(dailyForecastData)} />;
     case NONE:
     default:
       return null;

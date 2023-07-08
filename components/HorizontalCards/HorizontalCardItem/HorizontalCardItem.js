@@ -2,13 +2,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import Icon from '../../Icon/Icon';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
-export default function HorizontalCardItem({
-  timeText,
-  hourIndex,
-  temperatureText,
-  rainChanceText,
-  weatherCode,
-}) {
+export default function HorizontalCardItem(props) {
+  const {
+    timeText,
+    hourIndex,
+    temperatureText,
+    secondaryTemperatureText,
+    rainChanceText,
+    weatherCode,
+  } = props;
   const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
 
   return (
@@ -17,6 +19,11 @@ export default function HorizontalCardItem({
         <Text style={styles.text}>{timeText}</Text>
         <Icon name={weatherIcon} size={30} />
         <Text style={styles.smallText}>{temperatureText}</Text>
+        {secondaryTemperatureText && (
+          <Text style={[styles.smallText, styles.secondaryText]}>
+            {secondaryTemperatureText}
+          </Text>
+        )}
         <View style={styles.rowContainer}>
           <Icon name="Raindrop" size={11} rainChanceText={rainChanceText} />
           <Text style={styles.tinyText}>{rainChanceText}</Text>
@@ -28,13 +35,15 @@ export default function HorizontalCardItem({
 
 const styles = StyleSheet.create({
   container: {
-    width: 62,
-    maxWidth: 62,
+    width: 60,
+    flex: 1,
+    marginHorizontal: 2,
   },
   cardContainer: {
     alignItems: 'center',
     backgroundColor: '#262626',
     paddingVertical: 6,
+    paddingHorizontal: 4,
     borderRadius: 4,
     flexGrow: 1,
   },
@@ -55,5 +64,8 @@ const styles = StyleSheet.create({
   tinyText: {
     color: '#fff',
     fontSize: 11,
+  },
+  secondaryText: {
+    color: '#ccc',
   },
 });
