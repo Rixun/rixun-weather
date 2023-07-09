@@ -4,7 +4,9 @@ import CloudLightRain from './Icons/CloudLightRain';
 import CloudRain from './Icons/CloudRain';
 import CloudRainThunder from './Icons/CloudRainThunder';
 import CloudSnow from './Icons/CloudSnow';
+import EmptyContainer from './Icons/EmptyContainer';
 import Fog from './Icons/Fog';
+import HorizontalCards from './Icons/HorizontalCards';
 import Moon from './Icons/Moon';
 import MoonCloud from './Icons/MoonCloud';
 import MoonCloudLightRain from './Icons/MoonCloudLightRain';
@@ -18,6 +20,7 @@ import SunCloud from './Icons/SunCloud';
 import SunCloudLightRain from './Icons/SunCloudLightRain';
 import SunCloudRain from './Icons/SunCloudRain';
 import SunCloudSnow from './Icons/SunCloudSnow';
+import VerticalList from './Icons/VerticalList';
 import Wind from './Icons/Wind';
 
 export default {
@@ -27,7 +30,9 @@ export default {
   CloudRain,
   CloudRainThunder,
   CloudSnow,
+  EmptyContainer,
   Fog,
+  HorizontalCards,
   Moon,
   MoonCloud,
   MoonCloudLightRain,
@@ -41,5 +46,6 @@ export default {
   SunCloudLightRain,
   SunCloudRain,
   SunCloudSnow,
+  VerticalList,
   Wind,
 };

@@ -6,7 +6,8 @@ export default function Toggle(props) {
   return (
     <Switch
       trackColor={{ false: '#ddd', true: '#ddd' }}
-      thumbColor={active ? '#0098e5' : '#bbb'}
+      thumbColor={active ? '#0BAEFF' : '#bbb'}
+      activeThumbColor="#0BAEFF"
       ios_backgroundColor="#ddd"
       onValueChange={onToggle}
       value={active}

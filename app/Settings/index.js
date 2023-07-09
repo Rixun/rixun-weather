@@ -19,9 +19,9 @@ export default function Settings({}) {
       <SettingSection
         title="Hourly Forecast"
         options={[
-          { image: 'Image Here', name: HORIZONTAL_CARDS },
-          { image: 'Image Here', name: VERTICAL_LIST },
-          { image: 'Image Here', name: NONE },
+          { image: 'HorizontalCards', name: HORIZONTAL_CARDS },
+          { image: 'VerticalList', name: VERTICAL_LIST },
+          { image: 'EmptyContainer', name: NONE },
         ]}
         selectedOption={hourlyViewType}
         setSelectedOption={setHourlyViewType}
@@ -29,9 +29,9 @@ export default function Settings({}) {
       <SettingSection
         title="Daily Forecast"
         options={[
-          { image: 'Image Here', name: HORIZONTAL_CARDS },
-          { image: 'Image Here', name: VERTICAL_LIST },
-          { image: 'Image Here', name: NONE },
+          { image: 'HorizontalCards', name: HORIZONTAL_CARDS },
+          { image: 'VerticalList', name: VERTICAL_LIST },
+          { image: 'EmptyContainer', name: NONE },
         ]}
         selectedOption={dailyViewType}
         setSelectedOption={setDailyViewType}

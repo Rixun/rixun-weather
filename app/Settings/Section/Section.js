@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Toggle from '../../../components/Toggle/Toggle';
+import Icon from '../../../components/Icon/Icon';
 
 export default function SettingSection(props) {
   const { title, options, selectedOption, setSelectedOption } = props;
@@ -9,7 +10,7 @@ export default function SettingSection(props) {
       <Text style={styles.title}>{title}</Text>
       {options.map((option) => (
         <View key={title + option.name} style={styles.optionContainer}>
-          <Text style={styles.text}>{option.image}</Text>
+          <Icon name={option.image} width={80} height={40} />
           <View style={styles.optionToggleContainer}>
             <Text style={styles.optionText}>{option.name}</Text>
             <Toggle
