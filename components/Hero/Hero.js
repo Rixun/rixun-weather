@@ -19,7 +19,7 @@ export default function Hero() {
       {Object.keys(currentWeather).length > 0 && (
         <View style={styles.currentWeatherSection}>
           <Text style={styles.currentHeading}>{defaultLocation.name}</Text>
-          <Icon name={weatherIcon} height={150} width={150} />
+          <Icon name={weatherIcon} size={150} />
           <Text style={styles.currentData}>
             Temperature: {currentWeather.temperature}
           </Text>
@@ -40,10 +40,7 @@ export default function Hero() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
+  container: {},
   currentWeatherSection: {
     alignItems: 'center',
     justifyContent: 'center',

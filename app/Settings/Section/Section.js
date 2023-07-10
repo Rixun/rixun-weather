@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Toggle from '../../../components/Toggle/Toggle';
+import Icon from '../../../components/Icon/Icon';
 
 export default function SettingSection(props) {
   const { title, options, selectedOption, setSelectedOption } = props;
@@ -9,7 +10,7 @@ export default function SettingSection(props) {
       <Text style={styles.title}>{title}</Text>
       {options.map((option) => (
         <View key={title + option.name} style={styles.optionContainer}>
-          <Text style={styles.text}>{option.image}</Text>
+          <Icon name={option.image} width={80} height={40} />
           <View style={styles.optionToggleContainer}>
             <Text style={styles.optionText}>{option.name}</Text>
             <Toggle
@@ -27,14 +28,15 @@ export default function SettingSection(props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-    borderWidth: 1,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderBottomWidth: 1,
     borderBottomColor: '#292929',
   },
   title: {
     color: '#fff',
     fontSize: 18,
-    paddingBottom: 16,
+    paddingBottom: 4,
   },
   text: {
     color: '#fff',
@@ -43,14 +45,17 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
+    paddingVertical: 4,
+    alignItems: 'center',
   },
   optionToggleContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   optionText: {
     color: '#fff',
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
   },
 });

@@ -7,14 +7,19 @@ export default function RootLayout() {
       <Drawer
         screenOptions={{
           drawerStyle: {
-            backgroundColor: '#121212',
+            backgroundColor: '#161616',
           },
           drawerActiveTintColor: '#fff',
           drawerInactiveTintColor: '#656565',
           swipeEdgeWidth: 48,
           drawerContentStyle: {
-            padding: 16,
+            borderRadius: 16,
           },
+          headerStyle: {
+            backgroundColor: '#161616',
+            borderBottomColor: '#161616',
+          },
+          headerTintColor: '#fff',
         }}
         initialRouteName="index"
         backBehavior="history"

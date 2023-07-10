@@ -1,15 +1,18 @@
-import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
 import { useLocationStore, useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
-import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
+import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
 import { Drawer } from '../utility/Drawer';
+import HourlyWeather from '../components/HourlyWeather/HourlyWeather';
+import DefaultHomeScreen from '../components/DefaultHomeScreen/DefaultHomeScreen';
 
 export default function Home() {
   const setAllForecast = useWeatherStore((state) => state.setAllForecast);
+  const forecastData = useWeatherStore((state) => state.forecast);
   const defaultLocation = useLocationStore((state) => state.defaultLocation);
 
   useEffect(() => {
@@ -19,18 +22,16 @@ export default function Home() {
         setAllForecast(result);
       }
     };
-    fetchData();
+    if (Object.keys(defaultLocation).length > 0) {
+      fetchData();
+    }
   }, [defaultLocation]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Drawer.Screen
         options={{
-          title: 'Home',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: '#fff',
+          title: '',
           headerRight: () => (
             <Link style={[styles.text, styles.headerLink]} href="/Search">
               <Icon name="Search" size={26} />
@@ -38,30 +39,28 @@ export default function Home() {
           ),
         }}
       />
-      {Object.keys(defaultLocation).length > 0 ? (
+      {Object.keys(forecastData).length > 0 ? (
         <>
           <Hero />
-          <WeeklyWeather />
+          <HourlyWeather />
+          <DailyWeather />
         </>
       ) : (
-        <Link style={styles.text} href="/Search">
-          <View>
-            <Icon name="Search" width={100} height={100} />
-            <Text style={styles.text}>Search Location</Text>
-          </View>
-        </Link>
+        <DefaultHomeScreen />
       )}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#161616',
-    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    gap: 16,
     justifyContent: 'center',
-    padding: 16,
+    alignItems: 'center',
   },
   text: {
     color: '#fff',

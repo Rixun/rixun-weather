@@ -1,26 +1,30 @@
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import HorizontalCardItem from './HorizontalCardItem/HorizontalCardItem';
 
 export default function HorizontalCards(props) {
-  const { data } = props;
+  const { weatherData, horizontal = true, numColumns = null } = props;
 
   return (
     <View style={styles.container}>
-      {data?.map((data, index) => (
-        <HorizontalCardItem
-          key={data.date + index}
-          day={data.date}
-          dailyMaxTemp={data.tempMax}
-          dailyMinTemp={data.tempMin}
-        />
-      ))}
+      <FlatList
+        horizontal={horizontal}
+        numColumns={numColumns}
+        data={weatherData}
+        initialNumToRender={3}
+        contentContainerStyle={styles.contentContainer}
+        renderItem={({ item }) => {
+          return <HorizontalCardItem {...item} />;
+        }}
+        keyExtractor={(item, index) => item.timeText + item.temperatureText + index}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: '100%',
+    maxWidth: 768,
   },
+  contentContainer: {},
 });

@@ -1,22 +1,21 @@
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import React from 'react';
-import WeeklyWeatherVerticalListItem from './VerticalListItem/WeeklyWeatherVerticalListItem';
+import VerticalListItem from './VerticalListItem/VerticalListItem';
 
 export default function VerticalWeatherList(props) {
-  const { listData } = props;
+  const { weatherData } = props;
 
-  // Future additions:
-  // Add weekly vs daily switch here to determine style of list item if required
-  // Add Scrollview to show 7 list items at a time, may need to provide a set height of list items to do so depending on how it works
-  // or use FlatList?
   return (
     <View style={styles.container}>
-      {listData?.map((listItem, index) => (
-        <WeeklyWeatherVerticalListItem
-          key={listItem.date + index}
-          {...listItem}
-        />
-      ))}
+      <FlatList
+        data={weatherData}
+        initialNumToRender={7}
+        renderItem={({ item }) => {
+          return <VerticalListItem {...item} />;
+        }}
+        keyExtractor={(item, index) => item.timeText + item.temperatureText + index}
+        ItemSeparatorComponent={() => <View style={{ height: 8, width: 4 }} />}
+      />
     </View>
   );
 }
@@ -24,10 +23,10 @@ export default function VerticalWeatherList(props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    maxWidth: 800,
-    gap: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 8,
+    maxWidth: 768,
+    maxHeight: 220,
+    marginHorizontal: 'auto',
+    padding: 8,
     backgroundColor: '#262626',
     borderRadius: 4,
   },

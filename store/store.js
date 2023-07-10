@@ -6,26 +6,27 @@ import { HORIZONTAL_CARDS, VERTICAL_LIST } from '../config/constants';
 export const useWeatherStore = create((set) => ({
   forecast: {},
   current: {},
-  weekly: [],
+  daily: [],
   setAllForecast: (forecast) =>
     set((state) => ({
       forecast: forecast,
       current: forecast.current,
-      weekly: forecast.weekly,
+      hourly: forecast.hourly,
+      daily: forecast.daily,
     })),
 }));
 
 const defaultHourlyState = HORIZONTAL_CARDS;
-const defaultWeeklyState = VERTICAL_LIST;
+const defaultDailyState = VERTICAL_LIST;
 export const useSettingStore = create(
   persist(
     (set) => ({
       hourlyViewType: defaultHourlyState,
-      weeklyViewType: defaultWeeklyState,
+      dailyViewType: defaultDailyState,
       setHourlyViewType: (hourlyViewType) =>
         set(() => ({ hourlyViewType: hourlyViewType })),
-      setWeeklyViewType: (weeklyViewType) =>
-        set(() => ({ weeklyViewType: weeklyViewType })),
+      setDailyViewType: (dailyViewType) =>
+        set(() => ({ dailyViewType: dailyViewType })),
     }),
     { name: 'setting-storage', storage: createJSONStorage(() => AsyncStorage) }
   )
@@ -38,10 +39,13 @@ export const useLocationStore = create(
       defaultLocation: {},
       addNewLocation: (locationData) =>
         set((state) => ({ locations: [...state.locations, locationData] })),
-      removeLocation: (locationId) =>
+      removeLocation: (locationData) =>
         set((state) => ({
           locations: state.locations.filter(
-            (location) => location.id !== locationId
+            (location) =>
+              location.latitude !== locationData.latitude &&
+              location.longitude !== locationData.longitude &&
+              location.name !== locationData.name
           ),
         })),
       setDefaultLocation: (locationData) =>

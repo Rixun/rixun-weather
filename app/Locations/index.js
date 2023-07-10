@@ -8,6 +8,7 @@ import { useRouter } from 'expo-router';
 export default function Locations() {
   const router = useRouter();
   const locations = useLocationStore((state) => state.locations);
+  const removeLocation = useLocationStore((state) => state.removeLocation);
   const setDefaultLocation = useLocationStore(
     (state) => state.setDefaultLocation
   );
@@ -22,10 +23,6 @@ export default function Locations() {
       <Drawer.Screen
         options={{
           title: 'Locations',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: '#fff',
         }}
       />
       {/* TODO: If locations is empty, have button link to search page */}
@@ -34,6 +31,7 @@ export default function Locations() {
           listItem={listItem}
           key={listItem.name + index}
           onPress={onLocationPress}
+          onRemove={removeLocation}
         />
       ))}
     </View>
@@ -44,6 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#161616',
-    padding: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
 });

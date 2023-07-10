@@ -1,52 +1,71 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Icon from '../../Icon/Icon';
+import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
 
-const getStringDay = (currentDate) => {
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-  return days[currentDate];
-};
-
-export default function HorizontalCardItem({
-  day,
-  dailyMaxTemp,
-  dailyMinTemp,
-}) {
-  let currentDate = new Date(day);
-  let formattedDay = getStringDay(currentDate.getDay());
+export default function HorizontalCardItem(props) {
+  const {
+    timeText,
+    hourIndex,
+    temperatureText,
+    secondaryTemperatureText,
+    rainChanceText,
+    weatherCode,
+  } = props;
+  const weatherIcon = getWeatherIcon(weatherCode, hourIndex);
 
   return (
-    <View style={styles.cardContainer}>
-      <Text style={styles.formattedDay}>{formattedDay}</Text>
-      <Image
-        style={styles.img}
-        source={require('../../../assets/sun-icon.png')}
-      />
-      <Text style={styles.temperatureReading}>
-        {dailyMaxTemp} / {dailyMinTemp}
-      </Text>
+    <View style={styles.container}>
+      <View style={styles.cardContainer}>
+        <Text style={styles.text}>{timeText}</Text>
+        <Icon name={weatherIcon} size={30} />
+        <Text style={styles.smallText}>{temperatureText}</Text>
+        {secondaryTemperatureText && (
+          <Text style={[styles.smallText, styles.secondaryText]}>
+            {secondaryTemperatureText}
+          </Text>
+        )}
+        <View style={styles.rowContainer}>
+          <Icon name="Raindrop" size={11} rainChanceText={rainChanceText} />
+          <Text style={styles.tinyText}>{rainChanceText}</Text>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: 60,
+    flex: 1,
+    marginHorizontal: 2,
+  },
   cardContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: '#e2e2e2',
-    height: 80,
-    minWidth: 40,
-    borderWidth: 0.5,
-    margin: 1,
-    padding: 1.5,
+    backgroundColor: '#262626',
+    paddingVertical: 6,
+    paddingHorizontal: 4,
+    borderRadius: 4,
+    flexGrow: 1,
   },
-  formattedDay: {
+  rowContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 3,
+    marginTop: 2,
+  },
+  text: {
     color: '#fff',
+    fontSize: 16,
   },
-  img: {
-    width: 35,
-    height: 35,
-  },
-  temperatureReading: {
+  smallText: {
     color: '#fff',
     fontSize: 11,
+  },
+  tinyText: {
+    color: '#fff',
+    fontSize: 11,
+  },
+  secondaryText: {
+    color: '#ccc',
   },
 });
