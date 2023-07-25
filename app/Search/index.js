@@ -5,16 +5,14 @@ import { useLocationStore, useSearchStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
 import SearchBar from './SearchBar/SearchBar';
 import BackButton from '../../components/BackButton/BackButton';
-import { Drawer } from '../../utility/Drawer';
+import { Drawer } from 'expo-router/drawer';
 
 export default function Search() {
   const router = useRouter();
   const searchList = useSearchStore((state) => state.searchList);
   const setSearchList = useSearchStore((state) => state.setSearchList);
   const addNewLocation = useLocationStore((state) => state.addNewLocation);
-  const setDefaultLocation = useLocationStore(
-    (state) => state.setDefaultLocation
-  );
+  const setDefaultLocation = useLocationStore((state) => state.setDefaultLocation);
   const [searchText, setSearchText] = useState('');
 
   const clearFields = () => {

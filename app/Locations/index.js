@@ -2,16 +2,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { useLocationStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
-import { Drawer } from '../../utility/Drawer';
+import { Drawer } from 'expo-router/drawer';
 import { useRouter } from 'expo-router';
 
 export default function Locations() {
   const router = useRouter();
   const locations = useLocationStore((state) => state.locations);
   const removeLocation = useLocationStore((state) => state.removeLocation);
-  const setDefaultLocation = useLocationStore(
-    (state) => state.setDefaultLocation
-  );
+  const setDefaultLocation = useLocationStore((state) => state.setDefaultLocation);
 
   const onLocationPress = (locationData) => {
     setDefaultLocation(locationData);
