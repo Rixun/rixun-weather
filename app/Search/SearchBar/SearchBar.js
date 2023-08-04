@@ -3,7 +3,12 @@ import React, { useEffect, useRef } from 'react';
 import { useSearchStore } from '../../../store/store';
 import { getSuburbs } from '../../../api/api';
 
-export default function SearchBar({ searchText, setSearchText, setLoading }) {
+export default function SearchBar({
+  searchText,
+  setSearchText,
+  setLoading,
+  setHasSearched,
+}) {
   const searchInputRef = useRef(null);
   const setSearchList = useSearchStore((state) => state.setSearchList);
   let idleTimer;
@@ -12,6 +17,7 @@ export default function SearchBar({ searchText, setSearchText, setLoading }) {
   }, []);
   useEffect(() => {
     const search = () => {
+      setHasSearched(true);
       setLoading(true);
       idleTimer = setTimeout(async () => {
         const searchListResults = await getSuburbs(searchText);
@@ -28,6 +34,7 @@ export default function SearchBar({ searchText, setSearchText, setLoading }) {
     }
     return () => {
       clearTimeout(idleTimer);
+      setHasSearched(false);
     };
   }, [searchText]);
 

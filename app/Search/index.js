@@ -18,6 +18,7 @@ export default function Search() {
   );
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const clearFields = () => {
     setSearchList([]);
@@ -54,6 +55,7 @@ export default function Search() {
               searchText={searchText}
               setSearchText={setSearchText}
               setLoading={setLoading}
+              setHasSearched={setHasSearched}
             />
           ),
         }}
@@ -62,9 +64,11 @@ export default function Search() {
         (loading ? (
           <Loader />
         ) : (
-          <View style={styles.textContainer}>
-            <Text style={styles.notFoundText}>No results found :(</Text>
-          </View>
+          hasSearched && (
+            <View style={styles.textContainer}>
+              <Text style={styles.notFoundText}>No results found :(</Text>
+            </View>
+          )
         ))}
       <FlatList
         data={searchList}
