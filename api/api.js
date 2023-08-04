@@ -85,7 +85,7 @@ export async function getWeatherForecast(locationData) {
 
 export const getSuburbs = async (input) => {
   const response = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`
+    `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=50&language=en&format=json`
   );
 
   const searchData = await response.json();

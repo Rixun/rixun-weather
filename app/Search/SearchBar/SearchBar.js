@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSearchStore } from '../../../store/store';
 import { getSuburbs } from '../../../api/api';
 
-export default function SearchBar({ searchText, setSearchText }) {
+export default function SearchBar({ searchText, setSearchText, setLoading }) {
   const searchInputRef = useRef(null);
   const setSearchList = useSearchStore((state) => state.setSearchList);
   let idleTimer;
@@ -11,17 +11,25 @@ export default function SearchBar({ searchText, setSearchText }) {
     searchInputRef.current?.focus();
   }, []);
   useEffect(() => {
-    if (searchText?.trim() !== '') search();
+    const search = () => {
+      setLoading(true);
+      idleTimer = setTimeout(async () => {
+        const searchListResults = await getSuburbs(searchText);
+        if (!searchListResults.error) {
+          setSearchList(searchListResults);
+        } else {
+          setSearchList([]);
+        }
+        setLoading(false);
+      }, 1000);
+    };
+    if (searchText?.trim() !== '') {
+      search();
+    }
+    return () => {
+      clearTimeout(idleTimer);
+    };
   }, [searchText]);
-
-  const search = () => {
-    idleTimer = setTimeout(async () => {
-      const searchListResults = await getSuburbs(searchText);
-      if (!searchListResults.error) {
-        setSearchList(searchListResults);
-      }
-    }, 1000);
-  };
 
   return (
     <TextInput
