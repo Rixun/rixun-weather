@@ -1,7 +1,6 @@
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
-import { Drawer } from '../utility/Drawer';
-
-export default function RootLayout() {
+import { Drawer } from 'expo-router/drawer';
+export default function Layout() {
   return (
     <ThemeProvider value={DarkTheme}>
       <Drawer

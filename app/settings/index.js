@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import SettingSection from './Section/Section';
 import { useSettingStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
-import { Drawer } from '../../utility/Drawer';
+import { Drawer } from 'expo-router/drawer';
 
 export default function Settings({}) {
   const hourlyViewType = useSettingStore((state) => state.hourlyViewType);

@@ -6,7 +6,7 @@ import { useLocationStore, useWeatherStore } from '../store/store';
 import Hero from '../components/Hero/Hero';
 import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
-import { Drawer } from '../utility/Drawer';
+import { Drawer } from 'expo-router/drawer';
 import HourlyWeather from '../components/HourlyWeather/HourlyWeather';
 import DefaultHomeScreen from '../components/DefaultHomeScreen/DefaultHomeScreen';
 

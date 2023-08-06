@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import React from 'react';
 import Animated, {
   Easing,
@@ -7,8 +7,9 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import Icon from '../Icon/Icon';
 
-export default function Loader() {
+export default function Loader({ type = 'sun' }) {
   const rotate = useAnimatedStyle(() => ({
     transform: [
       {
@@ -26,7 +27,12 @@ export default function Loader() {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.loader, rotate]} />
+      {type === 'border' && <Animated.View style={[styles.loader, rotate]} />}
+      {type === 'sun' && (
+        <Animated.View style={[rotate]}>
+          <Icon name="Sun" size={100} />
+        </Animated.View>
+      )}
     </View>
   );
 }
