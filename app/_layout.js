@@ -1,24 +1,28 @@
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { Drawer } from 'expo-router/drawer';
+import { useThemeStore } from '../store/store';
 export default function Layout() {
+  const { textColor, backgroundColor } = useThemeStore((state) => ({
+    textColor: state.textColor,
+    backgroundColor: state.backgroundColor,
+  }));
+
   return (
     <ThemeProvider value={DarkTheme}>
       <Drawer
         screenOptions={{
           drawerStyle: {
-            backgroundColor: '#161616',
+            backgroundColor: backgroundColor,
           },
-          drawerActiveTintColor: '#fff',
-          drawerInactiveTintColor: '#656565',
-          swipeEdgeWidth: 48,
+          drawerActiveTintColor: textColor,
           drawerContentStyle: {
             borderRadius: 16,
           },
           headerStyle: {
-            backgroundColor: '#161616',
-            borderBottomColor: '#161616',
+            backgroundColor: backgroundColor,
+            borderBottomColor: backgroundColor,
           },
-          headerTintColor: '#fff',
+          headerTintColor: textColor,
         }}
         initialRouteName="index"
         backBehavior="history"

@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 import React, { useEffect, useRef } from 'react';
-import { useSearchStore } from '../../../store/store';
+import { useSearchStore, useThemeStore } from '../../../store/store';
 import { getSuburbs } from '../../../api/api';
 
 export default function SearchBar({
@@ -11,6 +11,10 @@ export default function SearchBar({
 }) {
   const searchInputRef = useRef(null);
   const setSearchList = useSearchStore((state) => state.setSearchList);
+  const { textColor, secondaryTextColor } = useThemeStore((state) => ({
+    textColor: state.textColor,
+    secondaryTextColor: state.secondaryTextColor,
+  }));
   let idleTimer;
   useEffect(() => {
     searchInputRef.current?.focus();
@@ -47,16 +51,18 @@ export default function SearchBar({
       }}
       placeholder={'Search'}
       style={styles.searchBar}
-      cursorColor={'#fff'}
-      placeholderTextColor={'#aaa'}
+      cursorColor={textColor}
+      placeholderTextColor={secondaryTextColor}
       autoFocus={true}
     />
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+
 const styles = StyleSheet.create({
   searchBar: {
-    color: '#fff',
+    color: textColor,
     fontSize: 20,
     width: '100%',
     paddingBottom: 5,

@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import { useLocationStore } from '../../store/store';
+import { useLocationStore, useThemeStore } from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
 import { Drawer } from 'expo-router/drawer';
 import { useRouter } from 'expo-router';
@@ -9,7 +9,9 @@ export default function Locations() {
   const router = useRouter();
   const locations = useLocationStore((state) => state.locations);
   const removeLocation = useLocationStore((state) => state.removeLocation);
-  const setDefaultLocation = useLocationStore((state) => state.setDefaultLocation);
+  const setDefaultLocation = useLocationStore(
+    (state) => state.setDefaultLocation
+  );
 
   const onLocationPress = (locationData) => {
     setDefaultLocation(locationData);
@@ -36,10 +38,12 @@ export default function Locations() {
   );
 }
 
+const backgroundColor = useThemeStore.getState().backgroundColor;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161616',
+    backgroundColor: backgroundColor,
     paddingHorizontal: 8,
     paddingVertical: 4,
   },

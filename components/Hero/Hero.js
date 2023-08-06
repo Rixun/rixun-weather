@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import Icon from '../Icon/Icon';
 import { getWeatherIcon } from '../../utility/weatherCodeHelper';
-import { useLocationStore, useWeatherStore } from '../../store/store';
+import {
+  useLocationStore,
+  useThemeStore,
+  useWeatherStore,
+} from '../../store/store';
 
 export default function Hero() {
   const currentWeather = useWeatherStore((state) => state.current);
@@ -47,6 +51,8 @@ export default function Hero() {
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   currentHeading: {
-    color: '#fff',
+    color: textColor,
     fontSize: 20,
   },
   subContainer: {
@@ -76,7 +82,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
   },
   currentData: {
-    color: '#fff',
+    color: textColor,
     fontSize: 14,
   },
 });

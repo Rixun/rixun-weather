@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Link } from 'expo-router';
 import Icon from '../Icon/Icon';
+import { useThemeStore } from '../../store/store';
 
 export default function IconLink(props) {
   const { href, iconName, iconSize, text } = props;
@@ -17,8 +18,10 @@ export default function IconLink(props) {
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+
 const styles = StyleSheet.create({
   text: {
-    color: '#fff',
+    color: textColor,
   },
 });

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Icon from '../../Icon/Icon';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
+import { useThemeStore } from '../../../store/store';
 
 export default function VerticalListItem(props) {
   const {
@@ -38,6 +39,8 @@ export default function VerticalListItem(props) {
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   text: {
-    color: '#FFF',
+    color: textColor,
     letterSpacing: 0.2,
   },
   icon: {

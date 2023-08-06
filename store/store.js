@@ -60,3 +60,27 @@ export const useSearchStore = create((set) => ({
   setSearchList: (searchListData) =>
     set(() => ({ searchList: searchListData })),
 }));
+
+const defaultText = '#fff';
+const defaultSecondaryText = '#ccc';
+const defaultBackground = '#161616';
+const defaultPrimary = '#0BAEFF';
+const defaultSecondary = '#efcc00';
+const defaultAccent = '#5b66a4';
+const defaultSecondaryBackground = '#ffffff10';
+
+export const useThemeStore = create(
+  persist(
+    (set) => ({
+      textColor: defaultText,
+      secondaryTextColor: defaultSecondaryText,
+      backgroundColor: defaultBackground,
+      primaryColor: defaultPrimary,
+      secondaryColor: defaultSecondary,
+      secondaryBackgroundColor: defaultSecondaryBackground,
+      setTextColor: (hex) => set(() => ({ textColor: hex })),
+      setBackgroundColor: (hex) => set(() => ({ backgroundColor: hex })),
+    }),
+    { name: 'theme-storage', storage: createJSONStorage(() => AsyncStorage) }
+  )
+);

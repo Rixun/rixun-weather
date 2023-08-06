@@ -2,7 +2,11 @@ import { StyleSheet, ScrollView, View } from 'react-native';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { getWeatherForecast } from '../api/api';
-import { useLocationStore, useWeatherStore } from '../store/store';
+import {
+  useLocationStore,
+  useThemeStore,
+  useWeatherStore,
+} from '../store/store';
 import Hero from '../components/Hero/Hero';
 import DailyWeather from '../components/DailyWeather/DailyWeather';
 import Icon from '../components/Icon/Icon';
@@ -33,7 +37,7 @@ export default function Home() {
         options={{
           title: '',
           headerRight: () => (
-            <Link style={[styles.text, styles.headerLink]} href="/Search">
+            <Link style={[styles.textColor, styles.headerLink]} href="/Search">
               <Icon name="Search" size={26} />
             </Link>
           ),
@@ -52,18 +56,21 @@ export default function Home() {
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+const backgroundColor = useThemeStore.getState().backgroundColor;
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#161616',
+    backgroundColor: backgroundColor,
     paddingHorizontal: 8,
     paddingVertical: 4,
     gap: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    color: '#fff',
+  textColor: {
+    color: textColor,
   },
   headerLink: {
     padding: 16,

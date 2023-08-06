@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import SettingSection from './Section/Section';
-import { useSettingStore } from '../../store/store';
+import { useSettingStore, useThemeStore } from '../../store/store';
 import { HORIZONTAL_CARDS, NONE, VERTICAL_LIST } from '../../config/constants';
 import { Drawer } from 'expo-router/drawer';
 
@@ -40,9 +40,11 @@ export default function Settings({}) {
   );
 }
 
+const backgroundColor = useThemeStore.getState().backgroundColor;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161616',
+    backgroundColor: backgroundColor,
   },
 });

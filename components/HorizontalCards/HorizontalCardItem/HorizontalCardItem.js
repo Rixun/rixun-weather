@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from '../../Icon/Icon';
 import { getWeatherIcon } from '../../../utility/weatherCodeHelper';
+import { useThemeStore } from '../../../store/store';
 
 export default function HorizontalCardItem(props) {
   const {
@@ -16,9 +17,11 @@ export default function HorizontalCardItem(props) {
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={styles.text}>{timeText}</Text>
+        <Text style={[styles.textColor, styles.text]}>{timeText}</Text>
         <Icon name={weatherIcon} size={30} />
-        <Text style={styles.smallText}>{temperatureText}</Text>
+        <Text style={[styles.textColor, styles.smallText]}>
+          {temperatureText}
+        </Text>
         {secondaryTemperatureText && (
           <Text style={[styles.smallText, styles.secondaryText]}>
             {secondaryTemperatureText}
@@ -26,22 +29,29 @@ export default function HorizontalCardItem(props) {
         )}
         <View style={styles.rowContainer}>
           <Icon name="Raindrop" size={11} rainChanceText={rainChanceText} />
-          <Text style={styles.tinyText}>{rainChanceText}</Text>
+          <Text style={[styles.textColor, styles.tinyText]}>
+            {rainChanceText}
+          </Text>
         </View>
       </View>
     </View>
   );
 }
 
+const secondaryBackgroundColor =
+  useThemeStore.getState().secondaryBackgroundColor;
+const textColor = useThemeStore.getState().textColor;
+const secondaryTextColor = useThemeStore.getState().secondaryTextColor;
+
 const styles = StyleSheet.create({
   container: {
     width: 60,
     flex: 1,
-    marginHorizontal: 2,
+    marginLeft: 4,
   },
   cardContainer: {
     alignItems: 'center',
-    backgroundColor: '#262626',
+    backgroundColor: secondaryBackgroundColor,
     paddingVertical: 6,
     paddingHorizontal: 4,
     borderRadius: 4,
@@ -53,19 +63,19 @@ const styles = StyleSheet.create({
     gap: 3,
     marginTop: 2,
   },
+  textColor: {
+    color: textColor,
+  },
   text: {
-    color: '#fff',
     fontSize: 16,
   },
   smallText: {
-    color: '#fff',
     fontSize: 11,
   },
   tinyText: {
-    color: '#fff',
     fontSize: 11,
   },
   secondaryText: {
-    color: '#ccc',
+    color: secondaryTextColor,
   },
 });

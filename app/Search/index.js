@@ -1,7 +1,11 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { useLocationStore, useSearchStore } from '../../store/store';
+import {
+  useLocationStore,
+  useSearchStore,
+  useThemeStore,
+} from '../../store/store';
 import LocationListItem from '../../components/LocationListItem/LocationListItem';
 import SearchBar from './SearchBar/SearchBar';
 import BackButton from '../../components/BackButton/BackButton';
@@ -83,10 +87,13 @@ export default function Search() {
   );
 }
 
+const backgroundColor = useThemeStore.getState().backgroundColor;
+const secondaryTextColor = useThemeStore.getState().secondaryTextColor;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161616',
+    backgroundColor: backgroundColor,
     paddingHorizontal: 8,
     paddingVertical: 4,
   },
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   notFoundText: {
-    color: '#969696',
+    color: secondaryTextColor,
     fontSize: 20,
   },
 });

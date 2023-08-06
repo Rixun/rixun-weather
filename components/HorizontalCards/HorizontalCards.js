@@ -15,7 +15,9 @@ export default function HorizontalCards(props) {
         renderItem={({ item }) => {
           return <HorizontalCardItem {...item} />;
         }}
-        keyExtractor={(item, index) => item.timeText + item.temperatureText + index}
+        keyExtractor={(item, index) =>
+          item.timeText + item.temperatureText + index
+        }
       />
     </View>
   );
@@ -26,5 +28,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 768,
   },
-  contentContainer: {},
+  contentContainer: {
+    marginLeft: -2,
+  },
 });

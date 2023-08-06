@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Icon from '../Icon/Icon';
+import { useThemeStore } from '../../store/store';
 
 export default function LocationListItem({
   listItem,
@@ -37,11 +38,16 @@ export default function LocationListItem({
   );
 }
 
+const textColor = useThemeStore.getState().textColor;
+const secondaryTextColor = useThemeStore.getState().secondaryTextColor;
+const secondaryBackgroundColor =
+  useThemeStore.getState().secondaryBackgroundColor;
+
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#333',
+    backgroundColor: secondaryBackgroundColor,
     marginVertical: 2,
     borderRadius: 8,
   },
@@ -61,11 +67,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   largeText: {
-    color: '#fff',
+    color: textColor,
     fontSize: 20,
   },
   text: {
-    color: '#ddd',
+    color: secondaryTextColor,
     fontSize: 16,
   },
   subContainer: {
