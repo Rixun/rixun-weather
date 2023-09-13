@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     color: '#fff',
-    fontSize: 11,
+    // fontSize: 11,
   },
   tinyText: {
     color: '#fff',
-    fontSize: 11,
+    // fontSize: 11,
   },
   secondaryText: {
     color: '#ccc',
