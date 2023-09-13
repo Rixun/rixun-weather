@@ -27,10 +27,10 @@ export default function VerticalListItem(props) {
         {/* <Icon name="Moon" width={20} height={20} style={styles.icon} /> */}
       </View>
       <View style={[styles.subContainer, styles.flexEnd]}>
-        <Text style={styles.text}>{temperatureText}</Text>
+        <Text style={styles.text}>{temperatureText} </Text>
         {secondaryTemperatureText && (
           <Text style={[styles.text, styles.secondaryText]}>
-            /{secondaryTemperatureText}
+            / {secondaryTemperatureText}
           </Text>
         )}
       </View>

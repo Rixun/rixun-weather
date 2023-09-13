@@ -19,7 +19,7 @@ const mapHourlyForecast = (hourlyWeather) => {
   for (let i = currentHour; i <= currentHour + 24; i++) {
     hourlyForecast.push({
       hourIndex: i,
-      temperature: hourlyWeather['temperature_2m'][i],
+      temperature: Math.round(hourlyWeather['temperature_2m'][i]),
       humidity: hourlyWeather['relativehumidity_2m'][i],
       rainChance: hourlyWeather['precipitation_probability'][i],
       weatherCode: hourlyWeather['weathercode'][i],
@@ -34,8 +34,8 @@ const mapDailyForecast = (dailyWeather) => {
     dailyForecast.push({
       date: dailyWeather['time'][i],
       weatherCode: dailyWeather['weathercode'][i],
-      tempMax: dailyWeather['temperature_2m_max'][i],
-      tempMin: dailyWeather['temperature_2m_min'][i],
+      tempMax: Math.round(dailyWeather['temperature_2m_max'][i]),
+      tempMin: Math.round(dailyWeather['temperature_2m_min'][i]),
       rainChance: dailyWeather['precipitation_probability_max'][i],
       uv: dailyWeather['uv_index_max'][i],
       uvClearSky: dailyWeather['uv_index_clear_sky_max'][i],
@@ -61,7 +61,7 @@ export async function getWeatherForecast(locationData) {
   );
 
   let resData = await response.json();
-
+  
   if (response.status === 200) {
     currentForecast = mapCurrentForecast(
       resData['current_weather'],
