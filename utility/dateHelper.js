@@ -8,6 +8,10 @@ export const getWeekDay = (day) => {
     'Friday',
     'Saturday',
   ];
+
+  if (day === new Date().getDay())
+    weekday[day] = 'Today';
+
   return weekday[day];
 };
 export const getShortenedWeekDay = (day) => {
